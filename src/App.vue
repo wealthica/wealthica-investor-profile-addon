@@ -1,19 +1,20 @@
 <template>
-  <div id="app">
-    <button @click="getTransaction">Transactions</button>
-    <ul>
-      <li v-for="(transaction, i) in transactions" :key="i">
-        {{ transaction.description }}
-      </li>
-    </ul>
-  </div>
+  <v-app>
+    <risk-charts />
+    <steppers />
+  </v-app>
 </template>
 
 <script>
-import Addon from '@wealthica/wealthica.js';
+import { Addon } from '@wealthica/wealthica.js';
 
 export default {
   name: 'App',
+
+  components: {
+    RiskCharts: () => import('./components/RiskCharts'),
+    Steppers: () => import('./components/Steppers'),
+  },
 
   data: () => ({
     addon: null,
@@ -36,9 +37,24 @@ export default {
   },
 
   methods: {
+    addTransaction() {
+      this.addon
+        .addTransaction({ description: 'some description' })
+        .then(newTrasaction => {
+          if (newTrasaction) {
+            console.log('new transaction', newTrasaction);
+          } else {
+            console.log('no new transaction');
+          }
+        })
+        .catch(err => {
+          console.log('error', err);
+        });
+    },
     getTransaction() {
-      this.addon.api.getTransactions(getQueryFromOptions(this.addonOptions))
-        .then(res => this.transactions = res);
+      this.addon.api
+        .getTransactions(getQueryFromOptions(this.addonOptions))
+        .then(res => (this.transactions = res));
     },
   },
 };
@@ -54,12 +70,8 @@ const getQueryFromOptions = options => ({
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.container {
+  width: 200px;
+  /* height: 300px; */
 }
 </style>
