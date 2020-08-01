@@ -7,7 +7,7 @@
       <v-card>
         <v-list rounded>
           <v-list-item-group v-model="riskAnalysisGuess" color="primary">
-            <v-list-item v-for="({ title }, i) in risks" :key="i">
+            <v-list-item v-for="({ title }, i) in RISKS" :key="i">
               {{ title }}
             </v-list-item>
           </v-list-item-group>
@@ -22,7 +22,13 @@
       Check your business status
     </v-stepper-step>
     <v-stepper-content step="2">
-      <v-card> </v-card>
+      <v-card>
+        <v-data-table
+          :headers="HEADERS"
+          :items="positions"
+          :items-per-page="5"
+        />
+      </v-card>
       <v-btn text @click="stepModel--">Prev</v-btn>
       <v-btn color="primary" @click="stepModel++">Next</v-btn>
     </v-stepper-content>
@@ -39,16 +45,44 @@
 </template>
 
 <script>
-import { risks } from '@/constants';
+import { mapState } from 'vuex';
+
+import { RISKS, HEADERS } from '@/constants';
+import { getAddonQueryFromOptions } from '@/utils';
 
 export default {
   data: () => ({
     stepModel: 1,
     riskAnalysisGuess: null,
+    positions: [],
   }),
 
+  computed: {
+    ...mapState(['addon']),
+  },
+
+  watch: {
+    stepModel(value) {
+      if (value === 2 && !this.positions.length) {
+        this.getPositions();
+      }
+    },
+  },
+
   created() {
-    this.risks = risks;
+    this.RISKS = RISKS;
+    this.HEADERS = HEADERS;
+  },
+
+  methods: {
+    getPositions() {
+      this.addon.addon.api
+        .getPositions(getAddonQueryFromOptions(this.addon.options))
+        .then(res => {
+          this.positions = res;
+        })
+        .catch(() => this.$toastr.e('Positions Download Error'));
+    },
   },
 };
 </script>

@@ -4,7 +4,7 @@
       <h2 class="text-center mb-3">Risk Charts</h2>
       <div class="d-flex flex-wrap justify-space-around">
         <pie-chart
-          v-for="(item, i) in risks"
+          v-for="(item, i) in RISKS"
           :key="`chart-${i}`"
           :data="makeChartData(item.data)"
           :title="item.title"
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { labels, risks } from '@/constants';
+import { LABELS, RISKS } from '@/constants';
 
 export default {
   components: {
@@ -23,13 +23,13 @@ export default {
   },
 
   created() {
-    this.risks = risks;
+    this.RISKS = RISKS;
   },
 
   methods: {
     makeChartData(data) {
       return {
-        labels,
+        labels: LABELS,
         datasets: [
           {
             backgroundColor: ['#00D8FF', '#E46651'],
