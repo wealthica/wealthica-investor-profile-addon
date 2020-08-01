@@ -8,7 +8,7 @@ export const RISKS = [
   { title: 'Aggressive', data: [20, 80] },
 ];
 
-export const HEADERS = [
+export const POSITIONS_TABLE_HEADERS = [
   { text: 'Symbol', value: 'security.symbol' },
   { text: 'Name', value: 'security.name' },
   { text: 'Class', value: 'class' },

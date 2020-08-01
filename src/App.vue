@@ -13,7 +13,7 @@ export default {
 
   components: {
     RiskCharts: () => import('./components/RiskCharts'),
-    Steppers: () => import('./components/Steppers'),
+    Steppers: () => import('./components/Steppers/index'),
   },
 
   data: () => ({

@@ -23,11 +23,7 @@
     </v-stepper-step>
     <v-stepper-content step="2">
       <v-card>
-        <v-data-table
-          :headers="HEADERS"
-          :items="positions"
-          :items-per-page="5"
-        />
+        <positions-table :positions="positions" />
       </v-card>
       <v-btn text @click="stepModel--">Prev</v-btn>
       <v-btn color="primary" @click="stepModel++">Next</v-btn>
@@ -47,10 +43,14 @@
 <script>
 import { mapState } from 'vuex';
 
-import { RISKS, HEADERS } from '@/constants';
+import { RISKS } from '@/constants';
 import { getAddonQueryFromOptions } from '@/utils';
 
 export default {
+  components: {
+    PositionsTable: () => import('./PositionsTable'),
+  },
+
   data: () => ({
     stepModel: 1,
     riskAnalysisGuess: null,
@@ -71,7 +71,6 @@ export default {
 
   created() {
     this.RISKS = RISKS;
-    this.HEADERS = HEADERS;
   },
 
   methods: {
