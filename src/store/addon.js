@@ -18,7 +18,6 @@ export const addon = {
 
   actions: {
     initAddon({ commit }) {
-      console.log('init addon');
       const addon = new Addon();
       commit('SET_ADDON', addon);
 

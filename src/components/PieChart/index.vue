@@ -8,6 +8,18 @@
 </template>
 
 <script>
+/**
+ * example of $attrs:
+ * {
+ *   labels: ['Bonds', 'Equities'],
+ *   datasets: [
+ *     {
+ *       backgroundColor: [color1, color2],
+ *       data: [bondsValue, equitiesValue],
+ *     },
+ *   ],
+ * }
+ */
 export default {
   components: {
     PieChart: () => import('./PieChart'),

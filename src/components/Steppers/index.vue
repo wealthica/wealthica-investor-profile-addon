@@ -33,7 +33,9 @@
       Risk Analysis of your business
     </v-stepper-step>
     <v-stepper-content step="3">
-      <v-card> </v-card>
+      <v-card>
+        <risk-analysis :positions="positions" />
+      </v-card>
       <v-btn text @click="stepModel--">Prev</v-btn>
       <v-btn disabled color="primary" @click="stepModel++">Next</v-btn>
     </v-stepper-content>
@@ -49,6 +51,7 @@ import { getAddonQueryFromOptions } from '@/utils';
 export default {
   components: {
     PositionsTable: () => import('./PositionsTable'),
+    RiskAnalysis: () => import('./RiskAnalysis'),
   },
 
   data: () => ({

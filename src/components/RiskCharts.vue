@@ -15,7 +15,8 @@
 </template>
 
 <script>
-import { LABELS, RISKS } from '@/constants';
+import { RISKS } from '@/constants';
+import { makeChartData } from '@/utils';
 
 export default {
   components: {
@@ -27,17 +28,7 @@ export default {
   },
 
   methods: {
-    makeChartData(data) {
-      return {
-        labels: LABELS,
-        datasets: [
-          {
-            backgroundColor: ['#00D8FF', '#E46651'],
-            data,
-          },
-        ],
-      };
-    },
+    makeChartData,
   },
 };
 </script>
