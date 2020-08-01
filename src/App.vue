@@ -1,13 +1,13 @@
 <template>
   <v-app>
-    <risk-charts />
-    <steppers />
+    <v-container>
+      <risk-charts />
+      <steppers />
+    </v-container>
   </v-app>
 </template>
 
 <script>
-// import { Addon } from '@wealthica/wealthica.js';
-
 export default {
   name: 'App',
 
@@ -17,10 +17,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.container {
-  width: 200px;
-  /* height: 300px; */
-}
-</style>
