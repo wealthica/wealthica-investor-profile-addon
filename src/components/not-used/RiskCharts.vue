@@ -3,7 +3,7 @@
     <h2 class="text-center mb-3">Risk Charts</h2>
     <div class="d-flex flex-wrap justify-space-around">
       <pie-chart
-        v-for="(item, i) in RISKS"
+        v-for="(item, i) in PROFILES"
         :key="`chart-${i}`"
         :data="makeChartData(item.data)"
         :title="item.title"
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { RISKS } from '@/constants';
+import { PROFILES } from '@/constants';
 import { makeChartData } from '@/utils';
 
 export default {
@@ -22,7 +22,7 @@ export default {
   },
 
   created() {
-    this.RISKS = RISKS;
+    this.PROFILES = PROFILES;
   },
 
   methods: {

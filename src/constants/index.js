@@ -1,6 +1,6 @@
 export const LABELS = ['Bonds', 'Equities'];
 
-export const RISKS = [
+export const PROFILES = [
   { title: 'Conservative', data: [80, 20] },
   { title: 'Cautious', data: [70, 30] },
   { title: 'Balanced', data: [50, 50] },
@@ -8,10 +8,7 @@ export const RISKS = [
   { title: 'Aggressive', data: [20, 80] },
 ];
 
-export const POSITIONS_TABLE_HEADERS = [
-  { text: 'Symbol', value: 'security.symbol' },
-  { text: 'Name', value: 'security.name' },
-  { text: 'Class', value: 'class' },
-  { text: 'Category', value: 'category' },
-  { text: 'Value', value: 'value' },
-];
+export const THEME = {
+  primary: '#803eac',
+  secondary: '#f59e2c',
+};

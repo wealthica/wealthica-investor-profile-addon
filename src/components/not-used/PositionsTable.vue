@@ -23,6 +23,14 @@ import { get, capitalize } from 'lodash';
 
 import { POSITIONS_TABLE_HEADERS } from '@/constants';
 
+const HEADERS = [
+  { text: 'Symbol', value: 'security.symbol' },
+  { text: 'Name', value: 'security.name' },
+  { text: 'Class', value: 'class' },
+  { text: 'Category', value: 'category' },
+  { text: 'Value', value: 'value' },
+];
+
 export default {
   props: ['positions'],
 
@@ -41,7 +49,7 @@ export default {
   },
 
   created() {
-    this.HEADERS = POSITIONS_TABLE_HEADERS;
+    this.HEADERS = HEADERS;
   },
 
   methods: {

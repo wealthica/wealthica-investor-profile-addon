@@ -1,9 +1,19 @@
 <template>
   <div class="piechart">
-    <p v-if="title" class="text-center mb-1">
+    <p
+      v-if="title"
+      aria-label="piechart-title"
+      class="text-center mb-1"
+      :style="titleStyle"
+    >
       <b>{{ title }}</b>
     </p>
-    <pie-chart v-bind="$attrs" />
+    <pie-chart
+      aria-label="piechart"
+      :style="chartStyle"
+      class="piechart"
+      v-bind="$attrs"
+    />
   </div>
 </template>
 
@@ -11,25 +21,41 @@
 /**
  * example of $attrs:
  * {
- *   labels: ['Bonds', 'Equities'],
- *   datasets: [
- *     {
- *       backgroundColor: [color1, color2],
- *       data: [bondsValue, equitiesValue],
- *     },
- *   ],
+ *   data: {
+ *     labels: ['Bonds', 'Equities'],
+ *     datasets: [
+ *       {
+ *         backgroundColor: [color1, color2],
+ *         data: [bondsValue, equitiesValue],
+ *       },
+ *     ],
+ *   }
  * }
  */
 export default {
   components: {
     PieChart: () => import('./PieChart'),
   },
-  props: ['title'],
+
+  props: {
+    title: {
+      type: String,
+      default: 'Chart',
+    },
+    titleStyle: {
+      type: Object,
+      default: () => ({ 'font-size': '20px' }),
+    },
+    chartStyle: {
+      type: Object,
+      default: () => ({ width: '100%' }),
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .piechart {
-  width: 150px;
+  max-width: 100%;
 }
 </style>

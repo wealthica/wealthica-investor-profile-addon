@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-container>
-      <risk-charts />
+      <portfolio-vs-nearest />
       <steppers />
     </v-container>
   </v-app>
@@ -12,7 +12,7 @@ export default {
   name: 'App',
 
   components: {
-    RiskCharts: () => import('./components/RiskCharts'),
+    PortfolioVsNearest: () => import('./components/PortfolioVsNearest'),
     Steppers: () => import('./components/Steppers/index'),
   },
 };
