@@ -1,6 +1,7 @@
 <template>
   <v-card>
-    <h2>Portfolio Rebalancing</h2>
+    <h2 class="pa-3">Portfolio Rebalancing</h2>
+
     <v-data-table
       :headers="HEADERS"
       :items="tableItems"

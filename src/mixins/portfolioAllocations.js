@@ -17,11 +17,12 @@ export const portfolioAllocations = {
       this.positions.forEach(position => {
         const i = position.class === 'equity' ? 1 : 0;
         res[i].amount += position.value;
+        netAmount += position.value;
         res[i].cntHoldings++;
       });
 
       res.forEach(allocation => {
-        allocation.percent = allocation.amount / netAmount;
+        allocation.percent = (100 * allocation.amount) / netAmount;
       });
 
       return res;

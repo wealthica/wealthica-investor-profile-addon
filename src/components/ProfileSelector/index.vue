@@ -85,6 +85,7 @@ export default {
 
   methods: {
     updateProfileId() {
+      console.log('update');
       if (this.profileHowSelectedId === PROFILE_FIND_NEAREST_ID) {
         this.$emit('update:profile-id', this.nearestProfileId);
       } else {

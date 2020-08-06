@@ -4,11 +4,11 @@ export const PROFILE_CHOOSE_ID = 0;
 export const PROFILE_FIND_NEAREST_ID = 1;
 
 export const PROFILES = [
-  { title: 'Conservative', data: [80, 20] },
-  { title: 'Cautious', data: [70, 30] },
-  { title: 'Balanced', data: [50, 50] },
-  { title: 'Assertive', data: [30, 70] },
-  { title: 'Aggressive', data: [20, 80] },
+  { title: 'Conservative', data: [80, 20], text: 'Conservative text' },
+  { title: 'Cautious', data: [70, 30], text: 'Cautious text' },
+  { title: 'Balanced', data: [50, 50], text: 'Balanced text' },
+  { title: 'Assertive', data: [30, 70], text: 'Assertive text' },
+  { title: 'Aggressive', data: [20, 80], text: 'Aggressive text' },
 ];
 
 export const THEME = {

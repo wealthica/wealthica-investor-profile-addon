@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <div class="d-flex space-around">
+    <div class="pa-3 d-flex justify-space-between align-center">
       <h2>Risk Profile</h2>
       <p class="change-profile">Change Profile</p>
     </div>
@@ -19,7 +19,7 @@
       <p>{{ profile.text }}</p>
       <p color="text--grey">Source</p>
 
-      <div class="d-flex space-around">
+      <div class="d-flex space-between">
         <h3><b>Allocation Target</b></h3>
         <p>
           <span>Bonds {{ profile.data[0] }}</span>
@@ -40,5 +40,6 @@ export default {
 .change-profile {
   color: #803eac;
   text-decoration: underline;
+  margin: 0;
 }
 </style>

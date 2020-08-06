@@ -1,9 +1,10 @@
 <template>
   <v-row>
-    <v-col v-for="(profileHow, i) in profileHows" :key="i" cols="12" md="6">
+    <v-col v-for="(profileHow, i) in profileHows" :key="i" cols="12" sm="6">
       <selector
         :profileHow="profileHow"
         :selected="profileHow.id === profileHowSelectedIdLocal"
+        @update:selected-id="profileHowSelectedIdLocal = profileHow.id"
       />
     </v-col>
   </v-row>
@@ -30,7 +31,7 @@ export default {
         return this.profileHowSelectedId;
       },
       set(value) {
-        this.$emit('update:profile-how-id', value);
+        this.$emit('update:profile-how-selected-id', value);
       },
     },
   },

@@ -1,5 +1,5 @@
 <template>
-  <div class="selector" @click="selectedIdLocal = profileHow.id">
+  <div class="selector" @click="handleClick">
     {{ profileHow.text }}
     {{ selected }}
   </div>
@@ -18,14 +18,10 @@ export default {
     selected: { type: Boolean },
   },
 
-  computed: {
-    selectedIdLocal: {
-      get() {
-        return this.selectedId;
-      },
-      set(value) {
-        this.$emit('update:selected-id', value);
-      },
+  methods: {
+    handleClick() {
+      console.log('clicked');
+      this.$emit('update:selected-id');
     },
   },
 };

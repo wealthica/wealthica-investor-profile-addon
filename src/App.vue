@@ -2,10 +2,10 @@
   <v-app>
     <div class="mx-2">
       <v-row>
-        <v-col cols="12" md="6">
+        <v-col cols="12" sm="6">
           <portfolio-card />
         </v-col>
-        <v-col cols="12" md="6">
+        <v-col cols="12" sm="6">
           <profile-card :profile="profile" />
         </v-col>
       </v-row>

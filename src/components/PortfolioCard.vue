@@ -1,25 +1,28 @@
 <template>
   <v-card>
-    <h2>Portfolio Allocation</h2>
+    <h2 class="pa-3">Portfolio Allocation</h2>
 
-    <v-row>
-      <v-col cols="6">
+    <div class="d-flex align-center flex-wrap">
+      <div>
         <pie-chart />
-      </v-col>
-
-      <v-col cols="6">
-        <div class="d-flex flex-column">
-          <div v-for="(allocation, i) in allocations" :key="i">
-            <h2>
-              <b>{{ allocation.label }}{{ ' ' }}</b>
-              {{ allocation.percent }}%
-            </h2>
-            <p>${{ allocation.amount }}</p>
-            <p>{{ allocation.cntHoldings }} Holdings</p>
-          </div>
+      </div>
+      <div class="d-flex flex-column">
+        <div
+          v-for="(allocation, i) in allocations"
+          :key="i"
+          :class="{ 'mb-3': !i }"
+        >
+          <p class="label">
+            <b>{{ allocation.label }}{{ ' ' }}</b>
+            {{ allocation.percent.toFixed(2) }}%
+          </p>
+          <p class="amount">${{ allocation.amount.toFixed(2) }}</p>
+          <p class="grey--text holdings">
+            {{ allocation.cntHoldings }} Holdings
+          </p>
         </div>
-      </v-col>
-    </v-row>
+      </div>
+    </div>
   </v-card>
 </template>
 
@@ -34,3 +37,18 @@ export default {
   mixins: [portfolioAllocations],
 };
 </script>
+
+<style lang="scss" scoped>
+p {
+  margin: 0;
+  &.label {
+    font-size: larger;
+  }
+  &.amount {
+    font-size: medium;
+  }
+  &.holdings {
+    font-size: smaller;
+  }
+}
+</style>
