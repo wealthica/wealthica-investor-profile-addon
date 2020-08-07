@@ -30,8 +30,8 @@ export default {
       return {
         chart: {
           type: 'pie',
-          height: 292,
-          width: 292,
+          height: 288,
+          width: 288,
         },
         credits: {
           enabled: false,
