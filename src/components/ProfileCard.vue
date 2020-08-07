@@ -35,11 +35,13 @@
         <h4 class="grey--text">Allocation Target</h4>
         <div>
           <span class="grey--text">Bonds </span>
-          <span class="mr-5 primary--text font-larger">{{
-            profile.data[0]
-          }}</span>
+          <span class="mr-5 primary--text font-larger font-weight-bold">
+            {{ profile.data[0] }}
+          </span>
           <span class="grey--text">Equities </span>
-          <span class="secondary--text font-larger">{{ profile.data[1] }}</span>
+          <span class="secondary--text font-larger font-weight-bold">
+            {{ profile.data[1] }}
+          </span>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <template>
   <v-app :style="appStyle">
-    <div v-if="!!positions.length" class="mx-2 grey--text text--darken-3">
+    <div v-if="!!positions.length" class="mx-2 grey--text text--darken-3 mb-5">
       <v-row>
         <v-col cols="12" sm="6">
           <portfolio-card />
@@ -14,14 +14,17 @@
         </v-col>
       </v-row>
 
-      <profile-selector
-        id="profile-selector"
-        :profile-how-selected-id.sync="profileHowSelectedId"
-        :profile-id.sync="profileId"
-      />
+      <div class="my-10">
+        <profile-selector
+          id="profile-selector"
+          :profile-how-selected-id.sync="profileHowSelectedId"
+          :profile-id.sync="profileId"
+        />
+      </div>
 
       <portfolio-rebalancing-card :profile="profile" />
     </div>
+
     <!-- <div v-else class="text-h5 primary text-center">
       No Positions Information
     </div> -->
