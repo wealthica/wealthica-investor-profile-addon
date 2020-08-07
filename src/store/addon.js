@@ -1,4 +1,5 @@
 import { Addon } from '@wealthica/wealthica.js';
+import { positions } from '@/constants/positions.dummy.js';
 
 export const addon = {
   state: {
@@ -29,23 +30,29 @@ export const addon = {
 
   actions: {
     initAddon({ commit, dispatch }) {
-      const addon = new Addon();
-      commit('SET_ADDON', addon);
+      if (process.env.NODE_ENV !== 'development') {
+        const addon = new Addon();
+        commit('SET_ADDON', addon);
 
-      addon
-        .on('init', options => commit('SET_OPTIONS', options))
-        .on('update', options => commit('SET_OPTIONS', options));
+        addon
+          .on('init', options => commit('SET_OPTIONS', options))
+          .on('update', options => commit('SET_OPTIONS', options));
+      }
 
       dispatch('getPositions');
     },
 
     getPositions({ commit, getters: { addon } }) {
-      addon.api
-        .getPositions()
-        .then(res => {
-          commit('SET_POSITIONS', res);
-        })
-        .catch(() => console.error('Positions download error'));
+      if (process.env.NODE_ENV === 'development') {
+        commit('SET_POSITIONS', positions);
+      } else {
+        addon.api
+          .getPositions()
+          .then(res => {
+            commit('SET_POSITIONS', res);
+          })
+          .catch(() => console.error('Positions download error'));
+      }
     },
   },
 };

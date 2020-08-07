@@ -6,8 +6,9 @@
     <v-slider
       v-model="chosenProfileId"
       :disabled="profileHowSelectedId !== PROFILE_CHOOSE_ID"
-      :trick-labels="profileTitles"
+      :tick-labels="profileTitles"
       :max="profileTitles.length - 1"
+      track-color="#f59e2c"
       step="1"
       ticks="always"
       tick-size="4"
@@ -41,28 +42,14 @@ export default {
     ...mapGetters(['positions']),
 
     nearestProfileId() {
-      let nearestId = 0,
-        nearestRatio = 0;
-
-      /**
-       * algorithm:
-       * a / b ~ c / d <=>
-       * <=> a * d ~ b * c <=>
-       * <=> min(left, right) / max(left, right) ~ 1, maximum
-       */
-      PROFILES.forEach(({ data }, i) => {
-        const t = [
-          data[0] * this.allocations[1].amount,
-          data[1] * this.allocations[0].amount,
-        ];
-        const ratio = Math.min(...t) / Math.max(...t);
-        if (nearestRatio < ratio) {
-          nearestId = i;
-          nearestRatio = ratio;
-        }
-      });
-
-      return nearestId;
+      let i = PROFILES.length - 2;
+      for (; i >= 0; i--) {
+        if (PROFILES[i].data[0] > this.allocations[0].percent) break;
+      }
+      // FIXME: init allocations not working
+      // console.log(this.allocations[0].percent);
+      // console.log(i + 1, PROFILES[i + 1].data[0]);
+      return i + 1;
     },
 
     profileTitles() {
@@ -71,12 +58,12 @@ export default {
   },
 
   watch: {
-    profileHowSelectedId: 'updateProfileId',
-    chosenProfileId: 'updateProfileId',
+    profileHowSelectedId: 'updateProfile',
+    chosenProfileId: 'updateProfile',
   },
 
   mounted() {
-    this.updateProfileId();
+    this.updateProfile();
   },
 
   created() {
@@ -84,13 +71,14 @@ export default {
   },
 
   methods: {
-    updateProfileId() {
-      console.log('update');
-      if (this.profileHowSelectedId === PROFILE_FIND_NEAREST_ID) {
-        this.$emit('update:profile-id', this.nearestProfileId);
-      } else {
-        this.$emit('update:profile-id', this.chosenProfileId);
-      }
+    updateProfile() {
+      const isNearest = this.profileHowSelectedId === PROFILE_FIND_NEAREST_ID;
+
+      this.$emit(
+        'update:profile',
+        isNearest ? this.nearestProfileId : this.chosenProfileId,
+        isNearest,
+      );
     },
   },
 };

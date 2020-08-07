@@ -1,16 +1,16 @@
 <template>
-  <v-app>
+  <v-app :style="appStyle">
     <div class="mx-2">
       <v-row>
         <v-col cols="12" sm="6">
           <portfolio-card />
         </v-col>
         <v-col cols="12" sm="6">
-          <profile-card :profile="profile" />
+          <profile-card :profile="profile" :is-nearest="isNearest" />
         </v-col>
       </v-row>
 
-      <profile-selector :update:profile-id="updateProfileId" />
+      <profile-selector @update:profile="updateProfile" />
 
       <portfolio-rebalancing-card :profile="profile" />
     </div>
@@ -33,17 +33,23 @@ export default {
 
   data: () => ({
     profileId: null,
+    isNearest: true,
   }),
 
   computed: {
     profile() {
       return this.profileId === null ? null : PROFILES[this.profileId];
     },
+
+    appStyle() {
+      return process.env.NODE_ENV === 'development' ? 'width: 1123px' : '';
+    },
   },
 
   methods: {
-    updateProfileId(id) {
+    updateProfile(id, isNearest) {
       this.profileId = id;
+      this.isNearest = isNearest;
     },
   },
 };

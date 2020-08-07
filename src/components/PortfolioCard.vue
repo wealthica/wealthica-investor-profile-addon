@@ -1,6 +1,6 @@
 <template>
-  <v-card>
-    <h2 class="pa-3">Portfolio Allocation</h2>
+  <v-card class="pa-5">
+    <h2>Portfolio Allocation</h2>
 
     <div class="d-flex align-center flex-wrap">
       <div>

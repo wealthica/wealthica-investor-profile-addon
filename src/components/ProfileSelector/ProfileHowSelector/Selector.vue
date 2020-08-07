@@ -20,7 +20,6 @@ export default {
 
   methods: {
     handleClick() {
-      console.log('clicked');
       this.$emit('update:selected-id');
     },
   },
