@@ -34,6 +34,10 @@ export default {
 
   props: ['profileId', 'profileHowSelectedId'],
 
+  data: () => ({
+    stickToNearest: true,
+  }),
+
   computed: {
     nearestProfileId() {
       let i = PROFILES.length - 2;
@@ -69,19 +73,17 @@ export default {
   watch: {
     profileHowSelectedId(value) {
       if (value === PROFILE_FIND_NEAREST_ID) {
+        this.stickToNearest = true;
         this.profileIdLocal = this.nearestProfileId;
-        /**
-         * profileId changed, so profileHowSelectedId will be set to PROFILE_CHOOSE_ID automatically by watch(profileIdLocal),
-         * so need to revert it after some time
-         */
-        setTimeout(() => {
-          this.profileHowSelectedIdLocal = PROFILE_FIND_NEAREST_ID;
-        }, 10);
       }
     },
 
     profileIdLocal() {
-      this.profileHowSelectedIdLocal = PROFILE_CHOOSE_ID;
+      if (!this.stickToNearest) {
+        this.profileHowSelectedIdLocal = PROFILE_CHOOSE_ID;
+      } else {
+        this.stickToNearest = false;
+      }
     },
   },
 
