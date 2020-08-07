@@ -12,7 +12,7 @@
       step="1"
       ticks="always"
       tick-size="4"
-      class="mt-4 mb-7"
+      class="mt-4 mb-7 my-slider"
     />
   </div>
 </template>
@@ -84,3 +84,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.my-slider .v-slider {
+  cursor: pointer;
+}
+</style>
