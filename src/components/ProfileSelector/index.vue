@@ -7,7 +7,6 @@
       v-model="profileIdLocal"
       :tick-labels="profileTitles"
       :max="profileTitles.length - 1"
-      :readonly="profileHowSelectedIdLocal !== PROFILE_CHOOSE_ID"
       track-color="#f59e2c"
       step="1"
       ticks="always"
@@ -69,8 +68,20 @@ export default {
 
   watch: {
     profileHowSelectedId(value) {
-      if (value === PROFILE_FIND_NEAREST_ID)
+      if (value === PROFILE_FIND_NEAREST_ID) {
         this.profileIdLocal = this.nearestProfileId;
+        /**
+         * profileId changed, so profileHowSelectedId will be set to PROFILE_CHOOSE_ID automatically by watch(profileIdLocal),
+         * so need to revert it after some time
+         */
+        setTimeout(() => {
+          this.profileHowSelectedIdLocal = PROFILE_FIND_NEAREST_ID;
+        }, 10);
+      }
+    },
+
+    profileIdLocal() {
+      this.profileHowSelectedIdLocal = PROFILE_CHOOSE_ID;
     },
   },
 
