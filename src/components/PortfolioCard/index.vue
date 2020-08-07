@@ -3,7 +3,7 @@
     <h2>Portfolio Allocation</h2>
 
     <div class="d-flex align-center flex-wrap">
-      <div>
+      <div class="mr-5 piechart-wrapper">
         <pie-chart />
       </div>
       <div class="d-flex flex-column">
@@ -39,6 +39,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.piechart-wrapper {
+  margin-left: -20px;
+}
 p {
   margin: 0;
   &.label {

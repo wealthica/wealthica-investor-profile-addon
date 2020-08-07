@@ -6,7 +6,7 @@
       :headers="HEADERS"
       :items="tableItems"
       hide-default-footer
-      class="table mx-auto"
+      class="my-table mx-10 my-5"
     />
   </v-card>
 </template>
@@ -50,3 +50,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.my-table > .v-data-table__wrapper > table > .v-data-table-header {
+  background-color: #eee !important;
+}
+</style>

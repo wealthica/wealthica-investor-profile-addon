@@ -2,7 +2,12 @@
   <v-card class="pa-5">
     <div class="d-flex justify-space-between align-center">
       <h2>Risk Profile</h2>
-      <p class="change-profile">Change Profile</p>
+      <div
+        class="primary--text text-decoration-underline change-profile pa-2 rounded"
+        @click="$emit('scroll-to-profile-selector')"
+      >
+        Change Profile
+      </div>
     </div>
 
     <div v-if="profile">
@@ -12,7 +17,10 @@
         </v-avatar>
         <div class="d-flex flex-column">
           <h3>{{ profile.title }} Investor</h3>
-          <div v-if="isNearest" class="secondary white--text rounded pa-1">
+          <div
+            v-if="isNearest"
+            class="secondary white--text rounded px-1 py-0 fit-content"
+          >
             BEST MATCH
           </div>
         </div>
@@ -27,9 +35,11 @@
         <h4 class="grey--text">Allocation Target</h4>
         <div>
           <span>Bonds </span>
-          <span class="mr-5" color="primary">{{ profile.data[0] }}</span>
+          <span class="mr-5 primary--text font-larger">{{
+            profile.data[0]
+          }}</span>
           <span>Equities </span>
-          <span>{{ profile.data[1] }}</span>
+          <span class="secondary--text font-larger">{{ profile.data[1] }}</span>
         </div>
       </div>
     </div>
@@ -43,9 +53,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.fit-content {
+  width: fit-content;
+}
+
+.font-larger {
+  font-size: larger;
+}
+
 .change-profile {
-  color: #803eac;
-  text-decoration: underline;
-  margin: 0;
+  cursor: pointer;
+  &:hover {
+    background-color: #eee;
+  }
 }
 </style>

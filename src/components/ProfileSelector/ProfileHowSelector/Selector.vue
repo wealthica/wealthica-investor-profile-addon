@@ -1,7 +1,13 @@
 <template>
-  <div class="selector" @click="handleClick">
+  <div
+    class="parent text-h6 rounded pa-3"
+    :class="{ selected: selected, 'not-selected': !selected }"
+    @click="handleClick"
+  >
+    <v-icon v-if="selected" class="icon" color="primary"
+      >mdi-checkbox-marked</v-icon
+    >
     {{ profileHow.text }}
-    {{ selected }}
   </div>
 </template>
 
@@ -27,7 +33,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.selector {
+.parent {
   cursor: pointer;
+  position: relative;
+  border-width: 2px;
+  border-style: solid;
+  &.selected {
+    border-color: #803eac;
+  }
+  &.not-selected {
+    border-color: #eee;
+  }
+}
+
+.icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(4px, -4px);
 }
 </style>
