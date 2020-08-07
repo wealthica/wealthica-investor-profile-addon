@@ -39,7 +39,7 @@ export default {
   border-width: 2px;
   border-style: solid;
   &.selected {
-    border-color: #803eac;
+    border-color: #a04bda;
   }
   &.not-selected {
     border-color: #eee;

@@ -1,12 +1,12 @@
 <template>
-  <v-card class="pa-5">
-    <h2>Portfolio Allocation</h2>
+  <v-card class="my-card pa-5 grey--text text--darken-3">
+    <h3>Portfolio Allocation</h3>
 
     <div class="d-flex align-center flex-wrap">
       <div class="mr-5 piechart-wrapper">
         <pie-chart />
       </div>
-      <div class="d-flex flex-column">
+      <div class="d-flex flex-column ">
         <div
           v-for="(allocation, i) in allocations"
           :key="i"
@@ -45,7 +45,7 @@ export default {
 p {
   margin: 0;
   &.label {
-    font-size: larger;
+    font-size: large;
   }
   &.amount {
     font-size: medium;

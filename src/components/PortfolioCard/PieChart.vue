@@ -30,8 +30,8 @@ export default {
       return {
         chart: {
           type: 'pie',
-          height: 300,
-          width: 300,
+          height: 292,
+          width: 292,
         },
         credits: {
           enabled: false,
@@ -74,8 +74,8 @@ export default {
 
 .child {
   position: absolute;
-  left: 85px;
-  top: 120px;
+  left: 80px;
+  top: 116px;
 }
 
 .font-larger {

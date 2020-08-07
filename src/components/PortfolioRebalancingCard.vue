@@ -1,6 +1,6 @@
 <template>
-  <v-card class="pa-5">
-    <h2>Portfolio Rebalancing</h2>
+  <v-card class="pa-5 grey--text text--darken-3">
+    <h3 class="grey--text text--darken-3">Portfolio Rebalancing</h3>
 
     <v-data-table
       :headers="HEADERS"
@@ -53,6 +53,16 @@ export default {
 
 <style lang="scss">
 .my-table > .v-data-table__wrapper > table > .v-data-table-header {
-  background-color: #eee !important;
+  background-color: #f7f8fc !important;
+}
+
+.my-table > .v-data-table__wrapper > table > tbody > tr > td,
+.v-data-table > .v-data-table__wrapper > table > tfoot > tr > td,
+.v-data-table > .v-data-table__wrapper > table > thead > tr > td {
+  color: #333 !important;
+}
+
+.my-table > .v-data-table__wrapper > table > thead > tr > th {
+  color: #333 !important;
 }
 </style>

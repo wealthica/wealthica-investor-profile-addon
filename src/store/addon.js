@@ -4,7 +4,7 @@ import { positions } from '@/constants/positions.dummy.js';
 export const addon = {
   state: {
     addon: null,
-    options: null,
+    options: {},
     positions: [],
   },
 
@@ -30,24 +30,31 @@ export const addon = {
 
   actions: {
     initAddon({ commit, dispatch }) {
-      if (process.env.NODE_ENV !== 'development') {
+      if (process.env.NODE_ENV === 'development') {
+        dispatch('getPositions', {});
+      } else {
         const addon = new Addon();
         commit('SET_ADDON', addon);
 
         addon
-          .on('init', options => commit('SET_OPTIONS', options))
-          .on('update', options => commit('SET_OPTIONS', options));
+          .on('init', options => {
+            commit('SET_OPTIONS', options);
+            dispatch('getPositions', options);
+          })
+          .on('update', options => {
+            commit('SET_OPTIONS', options);
+            dispatch('getPositions', options);
+          });
       }
-
-      dispatch('getPositions');
     },
 
-    getPositions({ commit, getters: { addon } }) {
+    getPositions({ commit, getters: { addon } }, options) {
+      console.log('adsfasdfasdf');
       if (process.env.NODE_ENV === 'development') {
         commit('SET_POSITIONS', positions);
       } else {
         addon.api
-          .getPositions()
+          .getPositions(options)
           .then(res => {
             commit('SET_POSITIONS', res);
           })

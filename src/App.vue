@@ -1,6 +1,6 @@
 <template>
   <v-app :style="appStyle">
-    <div v-if="!!positions.length" class="mx-2">
+    <div v-if="!!positions.length" class="mx-2 grey--text text--darken-3">
       <v-row>
         <v-col cols="12" sm="6">
           <portfolio-card />
@@ -77,3 +77,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.v-sheet.v-card:not(.v-sheet--outlined) {
+  box-shadow: 0 5px 7px 5px rgba(100, 100, 100, 0.1) !important;
+}
+</style>
