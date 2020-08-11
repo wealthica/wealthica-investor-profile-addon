@@ -1,3 +1,5 @@
+// dummy positions data for development on local
+
 export const positions = [
   {
     category: 'Bonds',
