@@ -91,10 +91,6 @@ export default {
     this.profileIdLocal = this.nearestProfileId;
     this.profileHowSelectedIdLocal = PROFILE_FIND_NEAREST_ID;
   },
-
-  created() {
-    this.PROFILE_CHOOSE_ID = PROFILE_CHOOSE_ID;
-  },
 };
 </script>
 

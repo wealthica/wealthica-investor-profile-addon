@@ -4,9 +4,9 @@
     :class="{ selected: selected, 'not-selected': !selected }"
     @click="handleClick"
   >
-    <v-icon v-if="selected" class="icon" color="primary"
-      >mdi-checkbox-marked</v-icon
-    >
+    <v-icon v-if="selected" class="icon" color="primary">
+      mdi-checkbox-marked
+    </v-icon>
     {{ profileHow.text }}
   </div>
 </template>

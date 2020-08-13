@@ -49,7 +49,6 @@ export const addon = {
     },
 
     getPositions({ commit, getters: { addon } }, options) {
-      console.log('adsfasdfasdf');
       if (process.env.NODE_ENV === 'development') {
         commit('SET_POSITIONS', positions);
       } else {

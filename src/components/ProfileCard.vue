@@ -13,10 +13,10 @@
     <div v-if="profile">
       <div class="d-flex align-center my-5">
         <v-avatar class="mr-4">
-          <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
+          <v-img :src="profile.imagePath" :alt="profile.title" />
         </v-avatar>
         <div class="d-flex flex-column">
-          <h4>{{ profile.title }} Investor</h4>
+          <h4>{{ profile.title }}</h4>
           <div
             v-if="isNearest"
             class="secondary white--text rounded px-1 py-0 fit-content"
@@ -27,7 +27,7 @@
       </div>
 
       <p class="mb-0">{{ profile.text }}</p>
-      <p class="grey--text">Source</p>
+      <p class="grey--text">{{ profile.source }}</p>
 
       <div
         class="d-flex flex-wrap justify-space-between align-center grey lighten-4 pa-3 pr-5 right-cut-corner"
@@ -51,6 +51,12 @@
 <script>
 export default {
   props: ['profile', 'isNearest'],
+
+  methods: {
+    getImage(imagePath) {
+      return require(imagePath);
+    },
+  },
 };
 </script>
 
