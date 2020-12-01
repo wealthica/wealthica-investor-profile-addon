@@ -1,5 +1,4 @@
-import { Addon } from '@wealthica/wealthica.js';
-import { positions } from '@/constants/positions.dummy.js';
+import {Addon} from '@wealthica/wealthica.js';
 
 export const addon = {
   state: {
@@ -7,13 +6,11 @@ export const addon = {
     options: {},
     positions: [],
   },
-
   getters: {
-    addon: ({ addon }) => addon,
-    addonOptions: ({ options }) => options,
-    positions: ({ positions }) => positions,
+    addon: ({addon}) => addon,
+    addonOptions: ({options}) => options,
+    positions: ({positions}) => positions,
   },
-
   mutations: {
     SET_ADDON(state, data) {
       state.addon = data;
@@ -27,38 +24,28 @@ export const addon = {
       state.positions = data;
     },
   },
-
   actions: {
-    initAddon({ commit, dispatch }) {
-      if (process.env.NODE_ENV === 'development') {
-        dispatch('getPositions', {});
-      } else {
-        const addon = new Addon();
-        commit('SET_ADDON', addon);
+    initAddon({commit, dispatch}) {
+      const addon = new Addon();
+      commit('SET_ADDON', addon);
 
-        addon
-          .on('init', options => {
-            commit('SET_OPTIONS', options);
-            dispatch('getPositions', options);
-          })
-          .on('update', options => {
-            commit('SET_OPTIONS', options);
-            dispatch('getPositions', options);
-          });
-      }
+      addon
+        .on('init', options => {
+          commit('SET_OPTIONS', options);
+          dispatch('getPositions', options);
+        })
+        .on('update', options => {
+          commit('SET_OPTIONS', options);
+          dispatch('getPositions', options);
+        });
     },
-
-    getPositions({ commit, getters: { addon } }, options) {
-      if (process.env.NODE_ENV === 'development') {
-        commit('SET_POSITIONS', positions);
-      } else {
-        addon.api
-          .getPositions(options)
-          .then(res => {
-            commit('SET_POSITIONS', res);
-          })
-          .catch(() => console.error('Positions download error'));
-      }
+    getPositions({commit, getters: {addon}}, options) {
+      addon.api
+        .getPositions(options)
+        .then(res => {
+          commit('SET_POSITIONS', res);
+        })
+        .catch(() => console.error('Positions download error'));
     },
   },
 };
