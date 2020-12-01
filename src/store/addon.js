@@ -56,7 +56,6 @@ export const addon = {
     },
     async getPositions({commit, getters: {addon, addonOptions}}) {
       const options = {
-        groups: addonOptions.groupsFilter,
         institutions: addonOptions.institutionsFilter,
         investments: addonOptions.investmentsFilter,
       };
