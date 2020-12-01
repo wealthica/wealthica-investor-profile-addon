@@ -50,9 +50,7 @@ export const addon = {
         .on('update', async options => {
           commit("SET_LOADING", true);
           commit('SET_OPTIONS', options);
-          console.log(1);
           await dispatch('getPositions');
-          console.log(2);
           commit("SET_LOADING", false);
         });
     },
