@@ -27,7 +27,13 @@ export const addon = {
   },
   actions: {
     initAddon({commit, dispatch}) {
-      const addon = new Addon();
+      // This is only required in the add-on release preparation process.
+      const addonConfiguration =
+        process.env.VUE_APP_DEVELOPER_ADDON === "true"
+          ? {}
+          : { id: "wealthica/wealthica-transactions-addon" };
+
+      const addon = new Addon(addonConfiguration);
       commit('SET_ADDON', addon);
 
       addon
