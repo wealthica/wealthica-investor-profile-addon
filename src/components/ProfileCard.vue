@@ -51,12 +51,6 @@
 <script>
 export default {
   props: ['profile', 'isNearest'],
-
-  methods: {
-    getImage(imagePath) {
-      return require(imagePath);
-    },
-  },
 };
 </script>
 
