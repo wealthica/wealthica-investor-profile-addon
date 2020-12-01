@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --https",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@wealthica/wealthica.js": "^0.0.14",
+    "@wealthica/wealthica.js": "0.0.16",
     "chart.js": "^2.9.3",
     "core-js": "^3.6.5",
     "highcharts": "^8.1.2",
@@ -16,6 +16,8 @@
     "lodash": "^4.17.19",
     "vue": "^2.6.11",
     "vue-chartjs": "^3.5.0",
+    "vue-polyglot": "^2.0.1",
+    "vue-svg-loader": "^0.16.0",
     "vue-toastr": "^2.1.2",
     "vue-truncate-filter": "^1.1.7",
     "vuetify": "^2.3.6",

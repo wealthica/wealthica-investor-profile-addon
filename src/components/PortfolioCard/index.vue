@@ -1,6 +1,6 @@
 <template>
   <v-card class="my-card pa-5 grey--text text--darken-3">
-    <h3>Portfolio Allocation</h3>
+    <h3>{{ $t("portfolio_allocation") }}</h3>
 
     <div class="d-flex align-center flex-wrap">
       <div class="mr-5 piechart-wrapper">
@@ -18,7 +18,7 @@
           </p>
           <p class="amount">${{ allocation.amount.toFixed(2) }}</p>
           <p class="grey--text holdings">
-            {{ allocation.cntHoldings }} Holdings
+            {{ allocation.cntHoldings }} {{ allocation.cntHoldings === 1 ? $t("holding") : $t("holdings") }}
           </p>
         </div>
       </div>

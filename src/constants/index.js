@@ -1,48 +1,43 @@
-export const LABELS = ['Bonds', 'Equities'];
+export const LABELS = ['bonds', 'equities'];
 
 export const PROFILE_CHOOSE_ID = 0;
 export const PROFILE_FIND_NEAREST_ID = 1;
 
 export const PROFILES = [
   {
-    title: 'Conservative Investor',
+    title: 'conservative_investor',
     data: [80, 20],
-    text:
-      'The Conservative Investor prioritizes the preservation of capital over market returns. She seeks to protect an investment portfolio’s value by investing in lower-risk securities such as fixed-income and money market securities, and often blue-chip or large-cap equities.',
-    source: 'Investopedia',
-    imagePath: './images/Conservative.png',
+    text: 'conservative_investor_text',
+    source: 'investopedia',
+    imagePath: 'img/conservative.png',
   },
   {
-    title: 'Cautious Investor',
+    title: 'cautious_investor',
     data: [70, 30],
-    text:
-      'The Cautious Investor prioritizes the preservation of capital over market returns. She prefers more stable, lower risk investments, especially those which offer more liquidity. The cautious investor has a lower equity exposure than investors with a more adventurous style.',
-    source: 'AkademiaCPD',
-    imagePath: './images/Cautious.png',
+    text: 'cautious_investor_text',
+    source: 'akademia_cpd',
+    imagePath: 'img/cautious.png',
   },
   {
-    title: 'Balanced Investor',
+    title: 'balanced_investor',
     data: [50, 50],
-    text:
-      'The Balanced Investor seeks a balance between capital preservation and growth. It is used by investors with a moderate risk tolerance and generally consists of a 50/50 mixture of stocks and bonds. It is at the middle of the risk-reward spectrum.',
-    source: 'Investopedia',
-    imagePath: './images/Balanced.png',
+    text: 'balanced_investor_text',
+    source: 'investopedia',
+    imagePath: 'img/balanced.png',
   },
   {
-    title: 'Assertive Investor',
+    title: 'assertive_investor',
     data: [30, 70],
-    text:
-      'The Assertive Investor seeks high long term capital growth by investing mostly in growth assets. She remains cautious towards taking high levels of long term risks. You accept the possibility of a negative annual return that may occur once in a while.',
-    source: 'Wealthica',
-    imagePath: './images/Assertive.png',
+    text: 'assertive_investor_text',
+    source: 'wealthica',
+    imagePath: 'img/assertive.png',
   },
   {
-    title: 'Aggressive Investor',
+    title: 'aggressive_investor',
     data: [20, 80],
-    text:
-      'The Aggressive Investor seeks to maximise long term capital growth by investing predominantly in stocks (or ETFs). She is aware of the high risk of a negative return and potential for capital loss in the short term. She sometimes gets higher returns for taking bigger risks.',
-    source: 'Wealthica',
-    imagePath: './images/Aggressive.png',
+    text: 'aggressive_investor_text',
+    source: 'wealthica',
+    imagePath: 'img/aggressive.png',
   },
 ];
 
