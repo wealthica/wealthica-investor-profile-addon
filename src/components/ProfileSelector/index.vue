@@ -17,31 +17,40 @@
 </template>
 
 <script>
-import { portfolioAllocations } from '@/mixins/portfolioAllocations';
+import portfolioAllocations from "@/mixins/portfolioAllocations";
 
 import {
   PROFILES,
   PROFILE_CHOOSE_ID,
-  PROFILE_FIND_NEAREST_ID,
-} from '@/constants';
+  PROFILE_FIND_NEAREST_ID
+} from "@/constants";
 
 export default {
   components: {
-    ProfileHowSelector: () => import('./ProfileHowSelector'),
+    ProfileHowSelector: () => import("./ProfileHowSelector")
   },
 
   mixins: [portfolioAllocations],
 
-  props: ['profileId', 'profileHowSelectedId'],
+  props: {
+    profileId: {
+      type: Number,
+      required: true
+    },
+    profileHowSelectedId: {
+      type: Number,
+      required: true
+    }
+  },
 
   data: () => ({
-    stickToNearest: true,
+    stickToNearest: true
   }),
 
   computed: {
     nearestProfileId() {
-      let i = PROFILES.length - 2;
-      for (; i >= 0; i--) {
+      const i = PROFILES.length - 2;
+      for (; i >= 0; i - 1) {
         if (PROFILES[i].data[0] > this.allocations[0].percent) break;
       }
       return i + 1;
@@ -56,8 +65,8 @@ export default {
         return this.profileId;
       },
       set(value) {
-        this.$emit('update:profile-id', value);
-      },
+        this.$emit("update:profile-id", value);
+      }
     },
 
     profileHowSelectedIdLocal: {
@@ -65,9 +74,9 @@ export default {
         return this.profileHowSelectedId;
       },
       set(value) {
-        this.$emit('update:profile-how-selected-id', value);
-      },
-    },
+        this.$emit("update:profile-how-selected-id", value);
+      }
+    }
   },
 
   watch: {
@@ -84,13 +93,13 @@ export default {
       } else {
         this.stickToNearest = false;
       }
-    },
+    }
   },
 
   mounted() {
     this.profileIdLocal = this.nearestProfileId;
     this.profileHowSelectedIdLocal = PROFILE_FIND_NEAREST_ID;
-  },
+  }
 };
 </script>
 

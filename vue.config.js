@@ -1,8 +1,8 @@
 module.exports = {
-  publicPath: '',
+  publicPath: "",
   devServer: {
     disableHostCheck: true,
-    port: 8088,
+    port: 8088
   },
 
   chainWebpack: config => {
@@ -26,5 +26,5 @@ module.exports = {
       .options({
         name: "assets/[name].[hash:8].[ext]"
       });
-  },
+  }
 };

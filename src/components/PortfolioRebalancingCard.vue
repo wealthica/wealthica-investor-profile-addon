@@ -12,29 +12,34 @@
 </template>
 
 <script>
-import { portfolioAllocations } from '@/mixins/portfolioAllocations';
-import { LABELS } from '@/constants';
+import portfolioAllocations from "@/mixins/portfolioAllocations";
+import { LABELS } from "@/constants";
 
 export default {
   mixins: [portfolioAllocations],
-  props: ['profile'],
-  data(){
+  props: {
+    profile: {
+      type: Object,
+      required: true
+    }
+  },
+  data() {
     return {
       headers: [
-        { text: this.$t('class'), value: 'class', sortable: false },
-        { text: this.$t('current'), value: 'current', sortable: false },
-        { text: this.$t('target'), value: 'target', sortable: false },
-        { text: this.$t('rebalancing'), value: 'rebalancing', sortable: false },
+        { text: this.$t("class"), value: "class", sortable: false },
+        { text: this.$t("current"), value: "current", sortable: false },
+        { text: this.$t("target"), value: "target", sortable: false },
+        { text: this.$t("rebalancing"), value: "rebalancing", sortable: false }
       ]
-    }
+    };
   },
   computed: {
     tableItems() {
-      let res = [0, 1].map(i => ({
+      const res = [0, 1].map(i => ({
         class: this.$t(LABELS[i]),
-        current: Math.round(this.allocations[i].percent) + '%',
-        target: this.profile ? this.profile.data[i] + '%' : '',
-        rebalancing: '',
+        current: `${Math.round(this.allocations[i].percent)}%`,
+        target: this.profile ? `${this.profile.data[i]}%` : "",
+        rebalancing: ""
       }));
 
       res[0].rebalancing =
@@ -43,8 +48,8 @@ export default {
           : this.$t("you_need_rebalancing");
 
       return res;
-    },
-  },
+    }
+  }
 };
 </script>
 

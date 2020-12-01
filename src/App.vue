@@ -1,31 +1,34 @@
 <template>
   <v-app :style="appStyle">
-    <div v-if="positions.length && !loading" class="mx-2 grey--text text--darken-3 mb-5">
+    <div
+      v-if="positions.length && !loading"
+      class="mx-2 grey--text text--darken-3 mb-5"
+    >
       <v-row>
         <v-col cols="12" sm="6">
-          <portfolio-card/>
+          <portfolio-card />
         </v-col>
         <v-col cols="12" sm="6">
           <profile-card
-              :profile="profile"
-              :is-nearest="isNearest"
-              @scroll-to-profile-selector="scrollToProfileSelector"
+            :profile="profile"
+            :is-nearest="isNearest"
+            @scroll-to-profile-selector="scrollToProfileSelector"
           />
         </v-col>
       </v-row>
 
       <div class="my-10">
         <profile-selector
-            id="profile-selector"
-            :profile-how-selected-id.sync="profileHowSelectedId"
-            :profile-id.sync="profileId"
+          id="profile-selector"
+          :profile-how-selected-id.sync="profileHowSelectedId"
+          :profile-id.sync="profileId"
         />
       </div>
 
-      <portfolio-rebalancing-card :profile="profile"/>
+      <portfolio-rebalancing-card :profile="profile" />
     </div>
     <v-card v-else-if="loading" class="text-center mx-4 mt-4 py-4">
-      <Loading/>
+      <Loading />
       <p class="mb-0 grey--text">{{ $t("loading") }}</p>
     </v-card>
     <v-card v-else class="text-center mx-4 mt-4">
@@ -37,7 +40,7 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex';
+import { mapGetters } from "vuex";
 import Loading from "@/assets/svg/loading.svg?inline";
 import PortfolioCard from "@/components/PortfolioCard/index.vue";
 import ProfileCard from "@/components/ProfileCard.vue";
@@ -47,11 +50,11 @@ import PortfolioRebalancingCard from "@/components/PortfolioRebalancingCard.vue"
 import {
   PROFILES,
   PROFILE_CHOOSE_ID,
-  PROFILE_FIND_NEAREST_ID,
-} from '@/constants';
+  PROFILE_FIND_NEAREST_ID
+} from "@/constants";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Loading,
     PortfolioCard,
@@ -61,7 +64,7 @@ export default {
   },
   data: () => ({
     profileId: null,
-    profileHowSelectedId: PROFILE_FIND_NEAREST_ID,
+    profileHowSelectedId: PROFILE_FIND_NEAREST_ID
   }),
   computed: {
     ...mapGetters(["positions", "loading"]),
@@ -71,21 +74,21 @@ export default {
     },
 
     appStyle() {
-      return process.env.NODE_ENV === 'development' ? 'max-width: 1123px' : '';
+      return process.env.NODE_ENV === "development" ? "max-width: 1123px" : "";
     },
 
     isNearest() {
       return this.profileHowSelectedId === PROFILE_FIND_NEAREST_ID;
-    },
+    }
   },
 
   methods: {
     scrollToProfileSelector() {
-      const element = document.getElementById('profile-selector');
-      element.scrollIntoView({block: 'start', behavior: 'smooth'});
+      const element = document.getElementById("profile-selector");
+      element.scrollIntoView({ block: "start", behavior: "smooth" });
       this.profileHowSelectedId = PROFILE_CHOOSE_ID;
-    },
-  },
+    }
+  }
 };
 </script>
 
