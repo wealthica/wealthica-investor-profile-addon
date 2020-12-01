@@ -13,8 +13,10 @@
     <div v-if="profile">
       <div class="d-flex align-center my-5">
         <v-avatar class="mr-4">
-          <v-img :src="require(`@/assets/${profile.imagePath}`)"
-                 :alt="$t(profile.title)" />
+          <v-img
+            :src="require(`@/assets/${profile.imagePath}`)"
+            :alt="$t(profile.title)"
+          />
         </v-avatar>
         <div class="d-flex flex-column">
           <h4>{{ $t(profile.title) }}</h4>
@@ -51,12 +53,16 @@
 
 <script>
 export default {
-  props: ['profile', 'isNearest'],
-  // methods: {
-  //   getImage(imagePath) {
-  //     return require(imagePath);
-  //   },
-  // },
+  props: {
+    profile: {
+      type: Object,
+      required: true
+    },
+    isNearest: {
+      type: Boolean,
+      required: true
+    }
+  }
 };
 </script>
 
@@ -83,7 +89,7 @@ export default {
     right: 0;
     top: 0;
     bottom: 0;
-    content: '';
+    content: "";
     border-top: 26px solid white;
     border-bottom: 26px solid white;
     border-left: 15px solid transparent;

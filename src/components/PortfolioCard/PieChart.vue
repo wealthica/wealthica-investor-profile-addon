@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import { portfolioAllocations } from '@/mixins/portfolioAllocations';
-import { THEME } from '@/constants';
+import portfolioAllocations from "@/mixins/portfolioAllocations";
+import { THEME } from "@/constants";
 
 export default {
   mixins: [portfolioAllocations],
@@ -29,12 +29,12 @@ export default {
     chartOptions() {
       return {
         chart: {
-          type: 'pie',
+          type: "pie",
           height: 288,
-          width: 288,
+          width: 288
         },
         credits: {
-          enabled: false,
+          enabled: false
         },
         title: false,
         tooltip: false,
@@ -42,28 +42,28 @@ export default {
           pie: {
             borderWidth: 1,
             startAngle: 0,
-            innerSize: '85%',
-            size: '100%',
+            innerSize: "85%",
+            size: "100%",
             dataLabels: false,
             stickyTracking: false,
             states: {
               hover: {
-                enabled: false,
-              },
-            },
-          },
+                enabled: false
+              }
+            }
+          }
         },
         series: [
           {
             data: [
               { y: this.allocations[0].percent, color: THEME.primary },
-              { y: this.allocations[1].percent, color: THEME.secondary },
-            ],
-          },
-        ],
+              { y: this.allocations[1].percent, color: THEME.secondary }
+            ]
+          }
+        ]
       };
-    },
-  },
+    }
+  }
 };
 </script>
 

@@ -17,18 +17,18 @@ export default {
     profileHow: {
       type: Object,
       default: () => ({
-        text: '',
-        id: 0,
-      }),
+        text: "",
+        id: 0
+      })
     },
-    selected: { type: Boolean },
+    selected: { type: Boolean }
   },
 
   methods: {
     handleClick() {
-      this.$emit('update:selected-id');
-    },
-  },
+      this.$emit("update:selected-id");
+    }
+  }
 };
 </script>
 

@@ -13,12 +13,13 @@
           :class="{ 'mb-3': !i }"
         >
           <p class="label">
-            <b>{{ allocation.label }}{{ ' ' }}</b>
+            <b>{{ allocation.label }}{{ " " }}</b>
             {{ allocation.percent.toFixed(2) }}%
           </p>
           <p class="amount">${{ allocation.amount.toFixed(2) }}</p>
           <p class="grey--text holdings">
-            {{ allocation.cntHoldings }} {{ allocation.cntHoldings === 1 ? $t("holding") : $t("holdings") }}
+            {{ allocation.cntHoldings }}
+            {{ allocation.cntHoldings === 1 ? $t("holding") : $t("holdings") }}
           </p>
         </div>
       </div>
@@ -27,14 +28,14 @@
 </template>
 
 <script>
-import { portfolioAllocations } from '@/mixins/portfolioAllocations';
+import portfolioAllocations from "@/mixins/portfolioAllocations";
 
 export default {
   components: {
-    PieChart: () => import('./PieChart'),
+    PieChart: () => import("./PieChart")
   },
 
-  mixins: [portfolioAllocations],
+  mixins: [portfolioAllocations]
 };
 </script>
 
