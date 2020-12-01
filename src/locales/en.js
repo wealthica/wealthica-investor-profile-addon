@@ -29,5 +29,7 @@ export default {
   "cautious_investor_text": "The Cautious Investor prioritizes the preservation of capital over market returns. She prefers more stable, lower risk investments, especially those which offer more liquidity. The cautious investor has a lower equity exposure than investors with a more adventurous style.",
   "balanced_investor_text": "The Balanced Investor seeks a balance between capital preservation and growth. It is used by investors with a moderate risk tolerance and generally consists of a 50/50 mixture of stocks and bonds. It is at the middle of the risk-reward spectrum.",
   "assertive_investor_text": "The Assertive Investor seeks high long term capital growth by investing mostly in growth assets. She remains cautious towards taking high levels of long term risks. You accept the possibility of a negative annual return that may occur once in a while.",
-  "aggressive_investor_text": "The Aggressive Investor seeks to maximise long term capital growth by investing predominantly in stocks (or ETFs). She is aware of the high risk of a negative return and potential for capital loss in the short term. She sometimes gets higher returns for taking bigger risks."
+  "aggressive_investor_text": "The Aggressive Investor seeks to maximise long term capital growth by investing predominantly in stocks (or ETFs). She is aware of the high risk of a negative return and potential for capital loss in the short term. She sometimes gets higher returns for taking bigger risks.",
+  "no_positions_found": "No positions found",
+  "loading": "Loading",
 };

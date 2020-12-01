@@ -5,12 +5,14 @@ export const addon = {
     addon: null,
     options: {},
     positions: [],
+    loading: true,
   },
   getters: {
     addon: ({addon}) => addon,
     addonOptions: ({options}) => options,
     positions: ({positions}) => positions,
     language: (state, getters) => getters.addonOptions.language || "en",
+    loading: state => state.loading,
   },
   mutations: {
     SET_ADDON(state, data) {
@@ -23,6 +25,9 @@ export const addon = {
     SET_POSITIONS(state, data) {
       state.positions = data;
     },
+    SET_LOADING(state, loading) {
+      state.loading = loading;
+    },
   },
   actions: {
     initAddon({commit, dispatch}) {
@@ -30,28 +35,36 @@ export const addon = {
       const addonConfiguration =
         process.env.VUE_APP_DEVELOPER_ADDON === "true"
           ? {}
-          : { id: "wealthica/wealthica-investor-profile-addon" };
+          : {id: "wealthica/wealthica-investor-profile-addon"};
 
       const addon = new Addon(addonConfiguration);
       commit('SET_ADDON', addon);
 
       addon
-        .on('init', options => {
+        .on('init', async options => {
+          commit("SET_LOADING", true);
           commit('SET_OPTIONS', options);
-          dispatch('getPositions', options);
+          await dispatch('getPositions');
+          commit("SET_LOADING", false);
         })
-        .on('update', options => {
+        .on('update', async options => {
+          commit("SET_LOADING", true);
           commit('SET_OPTIONS', options);
-          dispatch('getPositions', options);
+          console.log(1);
+          await dispatch('getPositions');
+          console.log(2);
+          commit("SET_LOADING", false);
         });
     },
-    getPositions({commit, getters: {addon}}, options) {
-      addon.api
-        .getPositions(options)
-        .then(res => {
-          commit('SET_POSITIONS', res);
-        })
-        .catch(() => console.error('Positions download error'));
+    async getPositions({commit, getters: {addon, addonOptions}}) {
+      const options = {
+        groups: addonOptions.groupsFilter,
+        institutions: addonOptions.institutionsFilter,
+        investments: addonOptions.investmentsFilter,
+      };
+
+      const positions = await addon.api.getPositions(options);
+      commit('SET_POSITIONS', positions);
     },
   },
 };

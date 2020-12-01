@@ -1,38 +1,49 @@
 <template>
   <v-app :style="appStyle">
-    <div v-if="!!positions.length" class="mx-2 grey--text text--darken-3 mb-5">
+    <div v-if="positions.length && !loading" class="mx-2 grey--text text--darken-3 mb-5">
       <v-row>
         <v-col cols="12" sm="6">
-          <portfolio-card />
+          <portfolio-card/>
         </v-col>
         <v-col cols="12" sm="6">
           <profile-card
-            :profile="profile"
-            :is-nearest="isNearest"
-            @scroll-to-profile-selector="scrollToProfileSelector"
+              :profile="profile"
+              :is-nearest="isNearest"
+              @scroll-to-profile-selector="scrollToProfileSelector"
           />
         </v-col>
       </v-row>
 
       <div class="my-10">
         <profile-selector
-          id="profile-selector"
-          :profile-how-selected-id.sync="profileHowSelectedId"
-          :profile-id.sync="profileId"
+            id="profile-selector"
+            :profile-how-selected-id.sync="profileHowSelectedId"
+            :profile-id.sync="profileId"
         />
       </div>
 
-      <portfolio-rebalancing-card :profile="profile" />
+      <portfolio-rebalancing-card :profile="profile"/>
     </div>
-
-    <!-- <div v-else class="text-h5 primary text-center">
-      No Positions Information
-    </div> -->
+    <v-card v-else-if="loading" class="text-center mx-4 mt-4 py-4">
+      <Loading/>
+      <p class="mb-0 grey--text">{{ $t("loading") }}</p>
+    </v-card>
+    <v-card v-else class="text-center mx-4 mt-4">
+      <p class="pa-5 grey--text mb-0">
+        {{ $t("no_positions_found") }}
+      </p>
+    </v-card>
   </v-app>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import {mapGetters} from 'vuex';
+import Loading from "@/assets/svg/loading.svg?inline";
+import PortfolioCard from "@/components/PortfolioCard/index.vue";
+import ProfileCard from "@/components/ProfileCard.vue";
+import ProfileSelector from "@/components/ProfileSelector/index.vue";
+import PortfolioRebalancingCard from "@/components/PortfolioRebalancingCard.vue";
+
 import {
   PROFILES,
   PROFILE_CHOOSE_ID,
@@ -41,22 +52,19 @@ import {
 
 export default {
   name: 'App',
-
   components: {
-    PortfolioCard: () => import('./components/PortfolioCard'),
-    ProfileCard: () => import('./components/ProfileCard'),
-    ProfileSelector: () => import('./components/ProfileSelector'),
-    PortfolioRebalancingCard: () =>
-      import('./components/PortfolioRebalancingCard'),
+    Loading,
+    PortfolioCard,
+    ProfileCard,
+    ProfileSelector,
+    PortfolioRebalancingCard
   },
-
   data: () => ({
     profileId: null,
     profileHowSelectedId: PROFILE_FIND_NEAREST_ID,
   }),
-
   computed: {
-    ...mapGetters(['positions']),
+    ...mapGetters(["positions", "loading"]),
 
     profile() {
       return this.profileId === null ? null : PROFILES[this.profileId];
@@ -74,7 +82,7 @@ export default {
   methods: {
     scrollToProfileSelector() {
       const element = document.getElementById('profile-selector');
-      element.scrollIntoView({ block: 'start', behavior: 'smooth' });
+      element.scrollIntoView({block: 'start', behavior: 'smooth'});
       this.profileHowSelectedId = PROFILE_CHOOSE_ID;
     },
   },
