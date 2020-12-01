@@ -10,13 +10,12 @@ export const addon = {
     addon: ({addon}) => addon,
     addonOptions: ({options}) => options,
     positions: ({positions}) => positions,
-    language: state => state.addonOptions.language || "en",
+    language: (state, getters) => getters.addonOptions.language || "en",
   },
   mutations: {
     SET_ADDON(state, data) {
       state.addon = data;
     },
-
     SET_OPTIONS(state, data) {
       state.options = data;
     },

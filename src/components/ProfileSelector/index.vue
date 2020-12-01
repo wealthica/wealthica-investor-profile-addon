@@ -48,7 +48,7 @@ export default {
     },
 
     profileTitles() {
-      return PROFILES.map(({ title }) => title);
+      return PROFILES.map(({ title }) => this.$t(title));
     },
 
     profileIdLocal: {

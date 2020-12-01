@@ -8,7 +8,7 @@ export const portfolioAllocations = {
     allocations() {
       let netAmount = 0,
         res = [0, 1].map(i => ({
-          label: LABELS[i],
+          label: this.$t(LABELS[i]),
           amount: 0,
           percent: 0,
           cntHoldings: 0,

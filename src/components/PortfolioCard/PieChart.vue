@@ -6,13 +6,13 @@
         <div class="primary--text text-h5 font-weight-bold">
           {{ Math.round(allocations[0].percent) }}
         </div>
-        <div class="grey--text">Bonds</div>
+        <div class="grey--text">{{ $t("bonds") }}</div>
       </div>
       <div class="d-flex flex-column align-center">
         <div class="secondary--text text-h5 font-weight-bold">
           {{ Math.round(allocations[1].percent) }}
         </div>
-        <div class="grey--text">Equities</div>
+        <div class="grey--text">{{ $t("equities") }}</div>
       </div>
     </div>
   </div>
