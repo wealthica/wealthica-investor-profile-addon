@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --https",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@wealthica/wealthica.js": "^0.0.14",
+    "@wealthica/wealthica.js": "^0.0.16",
     "chart.js": "^2.9.3",
     "core-js": "^3.6.5",
     "highcharts": "^8.1.2",

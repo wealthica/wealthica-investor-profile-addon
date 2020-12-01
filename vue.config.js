@@ -1,3 +1,7 @@
 module.exports = {
-  publicPath: ''
+  publicPath: '',
+  devServer: {
+    disableHostCheck: true,
+    port: 8088,
+  },
 };
