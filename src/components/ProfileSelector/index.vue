@@ -12,6 +12,7 @@
       ticks="always"
       tick-size="4"
       class="mt-4 mb-7 my-slider"
+      :vertical="isVertical"
     />
   </div>
 </template>
@@ -41,7 +42,8 @@ export default {
     }
   },
   data: () => ({
-    stickToNearest: true
+    stickToNearest: true,
+    isVertical: false
   }),
   computed: {
     nearestProfileId() {
@@ -93,9 +95,22 @@ export default {
       }
     }
   },
+  beforeDestroy() {
+    window.removeEventListener("setOrientation", this.resize);
+  },
+  created() {
+    this.setOrientation();
+  },
   mounted() {
+    window.addEventListener("setOrientation", this.resize);
+
     this.profileIdLocal = this.nearestProfileId;
     this.profileHowSelectedIdLocal = PROFILE_FIND_NEAREST_ID;
+  },
+  methods: {
+    setOrientation() {
+      this.isVertical = window.innerWidth < 600;
+    }
   }
 };
 </script>
@@ -103,5 +118,10 @@ export default {
 <style lang="scss">
 .my-slider .v-slider {
   cursor: pointer;
+}
+
+.my-slider .v-slider.v-slider--vertical {
+  min-height: 200px;
+  max-width: 20px;
 }
 </style>

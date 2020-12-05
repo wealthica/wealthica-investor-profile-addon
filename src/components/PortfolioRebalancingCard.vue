@@ -6,7 +6,7 @@
       :headers="headers"
       :items="tableItems"
       hide-default-footer
-      class="my-table mx-10 my-5"
+      class="my-table my-5"
     />
   </v-card>
 </template>
