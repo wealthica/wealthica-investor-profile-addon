@@ -14,9 +14,13 @@
         >
           <p class="label">
             <b>{{ allocation.label }}{{ " " }}</b>
-            {{ allocation.percent.toFixed(2) }}%
+            {{ allocation.percent }}%
           </p>
-          <p class="amount">${{ allocation.amount.toFixed(2) }}</p>
+          <p class="amount">
+            {{
+              allocation.amount | formatMoney({ currency: preferredCurrency })
+            }}
+          </p>
           <p class="grey--text holdings">
             {{ allocation.cntHoldings }}
             {{ allocation.cntHoldings === 1 ? $t("holding") : $t("holdings") }}
@@ -29,13 +33,16 @@
 
 <script>
 import portfolioAllocations from "@/mixins/portfolioAllocations";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
     PieChart: () => import("./PieChart")
   },
-
-  mixins: [portfolioAllocations]
+  mixins: [portfolioAllocations],
+  computed: {
+    ...mapGetters(["preferredCurrency"])
+  }
 };
 </script>
 
@@ -43,14 +50,18 @@ export default {
 .piechart-wrapper {
   margin-left: -20px;
 }
+
 p {
   margin: 0;
+
   &.label {
     font-size: large;
   }
+
   &.amount {
     font-size: medium;
   }
+
   &.holdings {
     font-size: smaller;
   }

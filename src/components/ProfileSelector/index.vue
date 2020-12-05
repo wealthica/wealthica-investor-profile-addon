@@ -18,48 +18,49 @@
 
 <script>
 import portfolioAllocations from "@/mixins/portfolioAllocations";
-
 import {
   PROFILES,
   PROFILE_CHOOSE_ID,
   PROFILE_FIND_NEAREST_ID
 } from "@/constants";
+import ProfileHowSelector from "./ProfileHowSelector/index.vue";
 
 export default {
   components: {
-    ProfileHowSelector: () => import("./ProfileHowSelector")
+    ProfileHowSelector
   },
-
   mixins: [portfolioAllocations],
-
   props: {
     profileId: {
       type: Number,
-      required: true
+      default: -1
     },
     profileHowSelectedId: {
       type: Number,
       required: true
     }
   },
-
   data: () => ({
     stickToNearest: true
   }),
-
   computed: {
     nearestProfileId() {
-      const i = PROFILES.length - 2;
-      for (; i >= 0; i - 1) {
-        if (PROFILES[i].data[0] > this.allocations[0].percent) break;
-      }
-      return i + 1;
-    },
+      const goal = this.allocations[0].percent;
+      let nearestIndex = 0;
 
+      for (let index = 1; index < PROFILES.length - 1; index += 1) {
+        nearestIndex =
+          Math.abs(PROFILES[index].data[0] - goal) <
+          Math.abs(PROFILES[nearestIndex].data[0] - goal)
+            ? index
+            : nearestIndex;
+      }
+
+      return nearestIndex;
+    },
     profileTitles() {
       return PROFILES.map(({ title }) => this.$t(title));
     },
-
     profileIdLocal: {
       get() {
         return this.profileId;
@@ -68,7 +69,6 @@ export default {
         this.$emit("update:profile-id", value);
       }
     },
-
     profileHowSelectedIdLocal: {
       get() {
         return this.profileHowSelectedId;
@@ -78,7 +78,6 @@ export default {
       }
     }
   },
-
   watch: {
     profileHowSelectedId(value) {
       if (value === PROFILE_FIND_NEAREST_ID) {
@@ -86,7 +85,6 @@ export default {
         this.profileIdLocal = this.nearestProfileId;
       }
     },
-
     profileIdLocal() {
       if (!this.stickToNearest) {
         this.profileHowSelectedIdLocal = PROFILE_CHOOSE_ID;
@@ -95,7 +93,6 @@ export default {
       }
     }
   },
-
   mounted() {
     this.profileIdLocal = this.nearestProfileId;
     this.profileHowSelectedIdLocal = PROFILE_FIND_NEAREST_ID;

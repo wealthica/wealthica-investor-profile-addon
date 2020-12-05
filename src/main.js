@@ -6,8 +6,9 @@ import "@/plugins/vue-truncate-filter";
 import Polyglot from "vue-polyglot";
 import locales from "@/locales";
 import { mapGetters } from "vuex";
+import App from "@/App.vue";
 import store from "./store";
-import App from "./App.vue";
+import "@/plugins/filters";
 
 Vue.config.productionTip = false;
 

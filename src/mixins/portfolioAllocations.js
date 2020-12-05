@@ -7,22 +7,29 @@ export default {
 
     allocations() {
       let netAmount = 0;
-      const allocations = [0, 1].map(i => ({
-        label: this.$t(LABELS[i]),
+      const allocations = [0, 1].map(index => ({
+        label: this.$t(LABELS[index]),
         amount: 0,
-        cntHoldings: 0
+        cntHoldings: 0,
+        percent: 0
       }));
 
       this.positions.forEach(position => {
-        const i = position.class === "equity" ? 1 : 0;
-        allocations[i].amount += position.value;
+        const index = position.class === "equity" ? 1 : 0;
+
+        allocations[index].amount += position.value;
+        allocations[index].cntHoldings += 1;
+
         netAmount += position.value;
-        allocations[i].cntHoldings += 1;
       });
 
-      allocations.forEach((allocation, index) => {
-        allocations[index].percent = (100 * allocation.amount) / netAmount;
-      });
+      if (netAmount > 0) {
+        allocations.forEach((allocation, index) => {
+          allocations[index].percent = parseFloat(
+            ((100 * allocation.amount) / netAmount).toFixed(2)
+          );
+        });
+      }
 
       return allocations;
     }

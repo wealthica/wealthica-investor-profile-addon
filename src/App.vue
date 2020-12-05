@@ -68,20 +68,16 @@ export default {
   }),
   computed: {
     ...mapGetters(["positions", "loading"]),
-
     profile() {
-      return this.profileId === null ? null : PROFILES[this.profileId];
+      return this.profileId === null ? {} : PROFILES[this.profileId];
     },
-
     appStyle() {
       return process.env.NODE_ENV === "development" ? "max-width: 1123px" : "";
     },
-
     isNearest() {
       return this.profileHowSelectedId === PROFILE_FIND_NEAREST_ID;
     }
   },
-
   methods: {
     scrollToProfileSelector() {
       const element = document.getElementById("profile-selector");

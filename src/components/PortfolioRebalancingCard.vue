@@ -38,9 +38,11 @@ export default {
       const res = [0, 1].map(i => ({
         class: this.$t(LABELS[i]),
         current: `${Math.round(this.allocations[i].percent)}%`,
-        target: this.profile ? `${this.profile.data[i]}%` : "",
+        target: this.profile.data ? `${this.profile.data[i]}%` : "",
         rebalancing: ""
       }));
+
+      console.log(res);
 
       res[0].rebalancing =
         res[0].current === res[0].target
