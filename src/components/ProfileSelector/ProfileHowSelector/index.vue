@@ -12,10 +12,11 @@
 
 <script>
 import { PROFILE_CHOOSE_ID, PROFILE_FIND_NEAREST_ID } from "@/constants";
+import Selector from "@/components/ProfileSelector/ProfileHowSelector/Selector.vue";
 
 export default {
   components: {
-    Selector: () => import("./Selector")
+    Selector
   },
 
   props: {

@@ -6,7 +6,7 @@
       :headers="headers"
       :items="tableItems"
       hide-default-footer
-      class="my-table mx-10 my-5"
+      class="my-table my-5"
     />
   </v-card>
 </template>
@@ -38,9 +38,11 @@ export default {
       const res = [0, 1].map(i => ({
         class: this.$t(LABELS[i]),
         current: `${Math.round(this.allocations[i].percent)}%`,
-        target: this.profile ? `${this.profile.data[i]}%` : "",
+        target: this.profile.data ? `${this.profile.data[i]}%` : "",
         rebalancing: ""
       }));
+
+      console.log(res);
 
       res[0].rebalancing =
         res[0].current === res[0].target

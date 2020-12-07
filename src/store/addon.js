@@ -5,14 +5,20 @@ export default {
     addon: null,
     options: {},
     positions: [],
-    loading: true
+    loading: true,
+    preferredCurrencyId: "",
+    currencies: {}
   },
   getters: {
     addon: state => state.addon,
     addonOptions: ({ options }) => options,
     positions: ({ positions }) => positions,
     language: (state, getters) => getters.addonOptions.language || "en",
-    loading: state => state.loading
+    loading: state => state.loading,
+    currency: (state, getters) => getters.addonOptions.currency,
+    currencies: state => state.currencies,
+    preferredCurrencyId: state => state.preferredCurrencyId,
+    preferredCurrency: state => state.currencies[state.preferredCurrencyId]
   },
   mutations: {
     SET_ADDON(state, data) {
@@ -27,6 +33,15 @@ export default {
     },
     SET_LOADING(state, loading) {
       state.loading = loading;
+    },
+    STORE_PREFERRED_CURRENCY_ID(state, id) {
+      state.preferredCurrencyId = id;
+    },
+    STORE_CURRENCIES(state, currencies) {
+      state.currencies = currencies.reduce(
+        (result, item) => ({ ...result, [item._id]: item }),
+        state.currencies
+      );
     }
   },
   actions: {
@@ -41,20 +56,17 @@ export default {
       commit("SET_ADDON", addon);
 
       addon
-        .on("init", async options => {
-          commit("SET_LOADING", true);
-          commit("SET_OPTIONS", options);
-          await dispatch("getPositions");
-          commit("SET_LOADING", false);
-        })
-        .on("update", async options => {
-          commit("SET_LOADING", true);
-          commit("SET_OPTIONS", options);
-          await dispatch("getPositions");
-          commit("SET_LOADING", false);
-        });
+        .on("init", options => dispatch("updateData", options))
+        .on("update", options => dispatch("updateData", options));
     },
-    async getPositions({ commit, getters }) {
+    async updateData({ commit, dispatch }, options) {
+      commit("SET_LOADING", true);
+      commit("SET_OPTIONS", options);
+      await dispatch("fetchCurrencies");
+      await dispatch("fetchPositions");
+      commit("SET_LOADING", false);
+    },
+    async fetchPositions({ commit, getters }) {
       const options = {
         institutions: getters.addonOptions.institutionsFilter,
         investments: getters.addonOptions.investmentsFilter
@@ -62,6 +74,14 @@ export default {
 
       const positions = await getters.addon.api.getPositions(options);
       commit("SET_POSITIONS", positions);
+    },
+    async fetchCurrencies({ commit, getters }) {
+      const { addon } = getters;
+      const currencies = await addon.api.getCurrencies();
+      const preferred = currencies.find(currency => currency.preferred);
+
+      commit("STORE_PREFERRED_CURRENCY_ID", preferred._id);
+      commit("STORE_CURRENCIES", currencies);
     }
   }
 };

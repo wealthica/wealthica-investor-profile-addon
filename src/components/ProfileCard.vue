@@ -10,7 +10,7 @@
       </div>
     </div>
 
-    <div v-if="profile">
+    <div v-if="profile.imagePath">
       <div class="d-flex align-center my-5">
         <v-avatar class="mr-4">
           <v-img
@@ -56,7 +56,9 @@ export default {
   props: {
     profile: {
       type: Object,
-      required: true
+      default: () => {
+        return {};
+      }
     },
     isNearest: {
       type: Boolean,
