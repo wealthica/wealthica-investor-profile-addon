@@ -50,7 +50,7 @@ export default {
       const addonConfiguration =
         process.env.VUE_APP_DEVELOPER_ADDON === "true"
           ? {}
-          : { id: "wealthica/wealthica-investor-profile-addon" };
+          : { id: "wealthica/wealthica-risk-profile-addon" };
 
       const addon = new Addon(addonConfiguration);
       commit("SET_ADDON", addon);
