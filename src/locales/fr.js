@@ -36,5 +36,6 @@ export default {
   aggressive_investor_text:
     "L'investisseur agressif cherche à maximiser la croissance du capital à long terme en investissant principalement dans des actions (ou ETF). Elle est consciente du risque élevé de rendement négatif et du potentiel de perte en capital à court terme. Elle obtient parfois des rendements plus élevés pour prendre des risques plus importants.",
   no_positions_found: "Aucun poste trouvé",
-  loading: "Chargement"
+  loading: "Chargement",
+  build: "Profil de risque v.{buildNumber}"
 };

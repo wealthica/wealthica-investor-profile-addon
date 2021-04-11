@@ -36,5 +36,6 @@ export default {
   aggressive_investor_text:
     "The Aggressive Investor seeks to maximise long term capital growth by investing predominantly in stocks (or ETFs). She is aware of the high risk of a negative return and potential for capital loss in the short term. She sometimes gets higher returns for taking bigger risks.",
   no_positions_found: "No positions found",
-  loading: "Loading"
+  loading: "Loading",
+  build: "Risk Profile v.{buildNumber}"
 };

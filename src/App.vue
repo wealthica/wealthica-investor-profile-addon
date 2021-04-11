@@ -1,5 +1,5 @@
 <template>
-  <v-app :style="appStyle">
+  <v-app :style="appStyle" class="app">
     <div
       v-if="positions.length && !loading"
       class="mx-2 grey--text text--darken-3 mb-5"
@@ -36,6 +36,11 @@
         {{ $t("no_positions_found") }}
       </p>
     </v-card>
+    <div
+      v-if="buildNumber"
+      class="app__build"
+      v-html="$t('build', null, { buildNumber })"
+    />
   </v-app>
 </template>
 
@@ -50,8 +55,9 @@ import PortfolioRebalancingCard from "@/components/PortfolioRebalancingCard.vue"
 import {
   PROFILES,
   PROFILE_CHOOSE_ID,
-  PROFILE_FIND_NEAREST_ID
-} from "@/constants";
+  PROFILE_FIND_NEAREST_ID,
+  BUILD_NUMBER
+} from "./constants";
 
 export default {
   name: "App",
@@ -64,7 +70,8 @@ export default {
   },
   data: () => ({
     profileId: null,
-    profileHowSelectedId: PROFILE_FIND_NEAREST_ID
+    profileHowSelectedId: PROFILE_FIND_NEAREST_ID,
+    buildNumber: BUILD_NUMBER
   }),
   computed: {
     ...mapGetters(["positions", "loading"]),
@@ -91,6 +98,16 @@ export default {
 <style lang="scss">
 .v-sheet.v-card:not(.v-sheet--outlined) {
   box-shadow: 0 5px 7px 5px rgba(100, 100, 100, 0.1) !important;
+}
+
+.app {
+  &__build {
+    margin-top: 3rem;
+
+    font-size: $text-3xs;
+    color: $gray-350;
+    text-align: center;
+  }
 }
 
 .tooltip {
