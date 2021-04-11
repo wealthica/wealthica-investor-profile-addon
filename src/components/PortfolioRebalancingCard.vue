@@ -12,11 +12,10 @@
 </template>
 
 <script>
-import portfolioAllocations from "@/mixins/portfolioAllocations";
 import { LABELS } from "@/constants";
+import { mapGetters } from "vuex";
 
 export default {
-  mixins: [portfolioAllocations],
   props: {
     profile: {
       type: Object,
@@ -34,6 +33,7 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(["allocations"]),
     tableItems() {
       const res = [0, 1].map(i => ({
         class: this.$t(LABELS[i]),
@@ -41,8 +41,6 @@ export default {
         target: this.profile.data ? `${this.profile.data[i]}%` : "",
         rebalancing: ""
       }));
-
-      console.log(res);
 
       res[0].rebalancing =
         res[0].current === res[0].target

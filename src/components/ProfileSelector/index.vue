@@ -18,19 +18,18 @@
 </template>
 
 <script>
-import portfolioAllocations from "@/mixins/portfolioAllocations";
 import {
   PROFILES,
   PROFILE_CHOOSE_ID,
   PROFILE_FIND_NEAREST_ID
 } from "@/constants";
+import { mapGetters } from "vuex";
 import ProfileHowSelector from "./ProfileHowSelector/index.vue";
 
 export default {
   components: {
     ProfileHowSelector
   },
-  mixins: [portfolioAllocations],
   props: {
     profileId: {
       type: Number,
@@ -46,6 +45,7 @@ export default {
     isVertical: false
   }),
   computed: {
+    ...mapGetters(["allocations"]),
     nearestProfileId() {
       const goal = this.allocations[0].percent;
 

@@ -18,7 +18,7 @@
           :class="{ 'mb-3': !i }"
         >
           <p class="label">
-            <b>{{ allocation.label }}{{ " " }}</b>
+            <b>{{ $t(allocation.label) }}{{ " " }}</b>
             {{ allocation.percent }}%
           </p>
           <p class="amount">
@@ -37,16 +37,14 @@
 </template>
 
 <script>
-import portfolioAllocations from "@/mixins/portfolioAllocations";
 import { mapGetters } from "vuex";
 
 export default {
   components: {
     PieChart: () => import("./PieChart")
   },
-  mixins: [portfolioAllocations],
   computed: {
-    ...mapGetters(["preferredCurrency"])
+    ...mapGetters(["preferredCurrency", "allocations"])
   }
 };
 </script>

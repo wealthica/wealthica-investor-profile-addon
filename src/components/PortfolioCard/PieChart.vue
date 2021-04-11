@@ -33,13 +33,12 @@
 </template>
 
 <script>
-import portfolioAllocations from "@/mixins/portfolioAllocations";
 import { THEME } from "@/constants";
+import { mapGetters } from "vuex";
 
 export default {
-  mixins: [portfolioAllocations],
-
   computed: {
+    ...mapGetters(["allocations"]),
     chartOptions() {
       return {
         chart: {
