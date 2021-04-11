@@ -48,17 +48,13 @@ export default {
   computed: {
     nearestProfileId() {
       const goal = this.allocations[0].percent;
-      let nearestIndex = 0;
 
-      for (let index = 1; index < PROFILES.length - 1; index += 1) {
-        nearestIndex =
-          Math.abs(PROFILES[index].data[0] - goal) <
-          Math.abs(PROFILES[nearestIndex].data[0] - goal)
-            ? index
-            : nearestIndex;
-      }
-
-      return nearestIndex;
+      return PROFILES.reduce((nearest, current, index) => {
+        return current.data[0] >= goal &&
+          (!nearest || current.data[0] < PROFILES[nearest].data[0])
+          ? index
+          : nearest;
+      }, 0);
     },
     profileTitles() {
       return PROFILES.map(({ title }) => this.$t(title));
