@@ -10,6 +10,11 @@
         <div
           v-for="(allocation, i) in allocations"
           :key="i"
+          v-tooltip="{
+            content: allocation.symbolsList,
+            autoHide: false,
+            offset: 10
+          }"
           :class="{ 'mb-3': !i }"
         >
           <p class="label">

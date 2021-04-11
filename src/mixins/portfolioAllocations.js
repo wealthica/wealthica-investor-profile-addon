@@ -11,7 +11,8 @@ export default {
         label: this.$t(LABELS[index]),
         amount: 0,
         cntHoldings: 0,
-        percent: 0
+        percent: 0,
+        symbols: []
       }));
 
       this.positions.forEach(position => {
@@ -19,6 +20,12 @@ export default {
 
         allocations[index].amount += position.value;
         allocations[index].cntHoldings += 1;
+
+        if (position.security) {
+          allocations[index].symbols.push(
+            position.security.symbol || position.security.name
+          );
+        }
 
         netAmount += position.value;
       });
@@ -28,6 +35,7 @@ export default {
           allocations[index].percent = parseFloat(
             ((100 * allocation.amount) / netAmount).toFixed(2)
           );
+          allocations[index].symbolsList = allocation.symbols.join(", ");
         });
       }
 

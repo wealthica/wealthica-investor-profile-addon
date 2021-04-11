@@ -3,6 +3,7 @@ import vuetify from "@/plugins/vuetify";
 import "@/plugins/highcharts-vue";
 import "@/plugins/vue-toastr";
 import "@/plugins/vue-truncate-filter";
+import "@/plugins/tooltip";
 import Polyglot from "vue-polyglot";
 import locales from "@/locales";
 import { mapGetters } from "vuex";

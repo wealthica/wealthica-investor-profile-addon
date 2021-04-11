@@ -2,13 +2,27 @@
   <div class="parent">
     <highcharts :options="chartOptions" />
     <div class="child d-flex flex-wrap">
-      <div class="d-flex flex-column align-center mr-10">
+      <div
+        v-tooltip="{
+          content: allocations[0].symbolsList,
+          autoHide: false,
+          offset: 10
+        }"
+        class="d-flex flex-column align-center mr-10"
+      >
         <div class="primary--text text-h5 font-weight-bold">
           {{ Math.round(allocations[0].percent) }}
         </div>
         <div class="grey--text">{{ $t("bonds") }}</div>
       </div>
-      <div class="d-flex flex-column align-center">
+      <div
+        v-tooltip="{
+          content: allocations[1].symbolsList,
+          autoHide: false,
+          offset: 10
+        }"
+        class="d-flex flex-column align-center"
+      >
         <div class="secondary--text text-h5 font-weight-bold">
           {{ Math.round(allocations[1].percent) }}
         </div>
@@ -36,8 +50,8 @@ export default {
         credits: {
           enabled: false
         },
-        title: false,
-        tooltip: false,
+        title: { floating: true, text: null },
+        tooltip: { enabled: false },
         plotOptions: {
           pie: {
             borderWidth: 1,
@@ -55,6 +69,7 @@ export default {
         },
         series: [
           {
+            enableMouseTracking: false,
             data: [
               { y: this.allocations[0].percent, color: THEME.primary },
               { y: this.allocations[1].percent, color: THEME.secondary }
