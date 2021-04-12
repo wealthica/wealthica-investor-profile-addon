@@ -5,6 +5,14 @@ module.exports = {
     port: 8088
   },
 
+  css: {
+    loaderOptions: {
+      scss: {
+        additionalData: `@import "@/styles/variables.scss";`
+      }
+    }
+  },
+
   chainWebpack: config => {
     const svgRule = config.module.rule("svg");
 

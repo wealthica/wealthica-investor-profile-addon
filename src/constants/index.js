@@ -1,3 +1,6 @@
+/* App version */
+export const BUILD_NUMBER = "5";
+
 export const LABELS = ["bonds", "equities"];
 
 export const PROFILE_CHOOSE_ID = 0;

@@ -1,15 +1,14 @@
-import * as _ from "lodash";
+import isFinite from "lodash/fp/isFinite";
 import numeral from "numeral";
 
 function formatNumber(value, format) {
-  if (!_.isFinite(value)) return "";
-
+  if (!isFinite(value)) return "";
   return numeral(value).format(format);
 }
 
 export default (value, options = {}) => {
   if (options.privateMode) return "";
-  if (!_.isFinite(value)) return options.allowNil ? "" : "N/A";
+  if (!isFinite(value)) return options.allowNil ? "" : "N/A";
 
   const { currency, showCurrency, parentheses } = options;
   const symbol = (currency && currency.sign) || options.symbol || "$";

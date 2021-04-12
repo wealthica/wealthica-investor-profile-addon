@@ -18,19 +18,18 @@
 </template>
 
 <script>
-import portfolioAllocations from "@/mixins/portfolioAllocations";
 import {
   PROFILES,
   PROFILE_CHOOSE_ID,
   PROFILE_FIND_NEAREST_ID
 } from "@/constants";
+import { mapGetters } from "vuex";
 import ProfileHowSelector from "./ProfileHowSelector/index.vue";
 
 export default {
   components: {
     ProfileHowSelector
   },
-  mixins: [portfolioAllocations],
   props: {
     profileId: {
       type: Number,
@@ -46,19 +45,16 @@ export default {
     isVertical: false
   }),
   computed: {
+    ...mapGetters(["allocations"]),
     nearestProfileId() {
       const goal = this.allocations[0].percent;
-      let nearestIndex = 0;
 
-      for (let index = 1; index < PROFILES.length - 1; index += 1) {
-        nearestIndex =
-          Math.abs(PROFILES[index].data[0] - goal) <
-          Math.abs(PROFILES[nearestIndex].data[0] - goal)
-            ? index
-            : nearestIndex;
-      }
-
-      return nearestIndex;
+      return PROFILES.reduce((nearest, current, index) => {
+        return current.data[0] >= goal &&
+          (!nearest || current.data[0] < PROFILES[nearest].data[0])
+          ? index
+          : nearest;
+      }, 0);
     },
     profileTitles() {
       return PROFILES.map(({ title }) => this.$t(title));
