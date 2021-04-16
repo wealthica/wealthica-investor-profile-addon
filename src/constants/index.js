@@ -1,5 +1,5 @@
 /* App version */
-export const BUILD_NUMBER = "5";
+export const BUILD_NUMBER = "6";
 
 export const LABELS = ["bonds", "equities"];
 

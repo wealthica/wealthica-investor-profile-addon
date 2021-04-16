@@ -50,8 +50,8 @@ export default {
       const goal = this.allocations[0].percent;
 
       return PROFILES.reduce((nearest, current, index) => {
-        return current.data[0] >= goal &&
-          (!nearest || current.data[0] < PROFILES[nearest].data[0])
+        return Math.abs(PROFILES[index].data[0] - goal) <
+          Math.abs(PROFILES[nearest].data[0] - goal)
           ? index
           : nearest;
       }, 0);
