@@ -5,7 +5,8 @@
   "scripts": {
     "build": "rm -rf dist && npm run build:addon && mkdir dist/widgets && npm run build:widget --widget='risk-profile'",
     "build:addon": "npm run build --prefix addon && cp -rf addon/dist dist",
-    "build:widget": "npm run build --prefix widgets/${npm_config_widget} && cp -rf widgets/${npm_config_widget}/dist dist/widgets/${npm_config_widget}"
+    "build:widget": "npm run build --prefix widgets/${npm_config_widget} && cp -rf widgets/${npm_config_widget}/dist dist/widgets/${npm_config_widget}",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@vue/eslint-config-airbnb": "^5.1.0",
