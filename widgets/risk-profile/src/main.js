@@ -1,17 +1,14 @@
 import Vue from "vue";
-import vuetify from "@/plugins/vuetify";
-import "@/plugins/highcharts-vue";
-import "@/plugins/vue-toastr";
-import "@/plugins/vue-truncate-filter";
-import "@/plugins/tooltip";
 import Polyglot from "vue-polyglot";
 import locales from "@/locales";
+import numeral from "numeral";
 import { mapGetters } from "vuex";
 import App from "@/App.vue";
 import store from "./store";
 import "@/plugins/filters";
+import "@/plugins/highcharts-vue";
+import "@/plugins/tooltip";
 
-import numeral from "numeral";
 import "numeral/locales/fr-ca";
 
 Vue.config.productionTip = false;
@@ -31,6 +28,5 @@ new Vue({
   created() {
     this.$store.dispatch("initAddon");
   },
-  vuetify,
   render: h => h(App)
 }).$mount("#app");
