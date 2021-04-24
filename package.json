@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve --https",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "lint-fix": "vue-cli-service lint --fix"
+    "build": "rm -rf dist && npm run build:addon && mkdir dist/widgets && npm run build:widget --widget='risk-profile'",
+    "build:addon": "npm run build --prefix addon && cp -rf addon/dist dist",
+    "build:widget": "npm run build --prefix widgets/${npm_config_widget} && cp -rf widgets/${npm_config_widget}/dist dist/widgets/${npm_config_widget}"
   },
   "dependencies": {
     "@vue/eslint-config-airbnb": "^5.1.0",
