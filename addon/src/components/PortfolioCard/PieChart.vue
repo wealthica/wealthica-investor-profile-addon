@@ -28,6 +28,7 @@ export default {
         tooltip: { enabled: false },
         plotOptions: {
           pie: {
+            animation: false,
             borderWidth: 1,
             startAngle: 0,
             innerSize: "85%",

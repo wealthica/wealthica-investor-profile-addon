@@ -1,5 +1,6 @@
 import { Addon } from "@wealthica/wealthica.js";
 import { LABELS } from "@/constants";
+import isEqual from "lodash/fp/isEqual";
 
 export default {
   state: {
@@ -12,7 +13,7 @@ export default {
   },
   getters: {
     addon: state => state.addon,
-    addonOptions: ({ options }) => options,
+    addonOptions: ({ options }) => options || {},
     positions: ({ positions }) => positions,
     language: (state, getters) => getters.addonOptions.language || "en",
     loading: state => state.loading,
@@ -96,20 +97,37 @@ export default {
         .on("init", options => dispatch("updateData", options))
         .on("update", options => dispatch("updateData", options));
     },
-    async updateData({ commit, dispatch }, options) {
-      commit("SET_LOADING", true);
+    async updateData({ getters, commit, dispatch }, options) {
+      const oldFilters = {
+        groups: getters.addonOptions.groupsFilter,
+        institutions: getters.addonOptions.institutionsFilter,
+        investments: getters.addonOptions.investmentsFilter
+      };
+
       commit("SET_OPTIONS", options);
+
+      const newFilters = {
+        groups: getters.addonOptions.groupsFilter,
+        institutions: getters.addonOptions.institutionsFilter,
+        investments: getters.addonOptions.investmentsFilter
+      };
+
+      if (isEqual(oldFilters, newFilters)) return;
+
+      commit("SET_LOADING", true);
+
       await dispatch("fetchCurrencies");
       await dispatch("fetchPositions");
       commit("SET_LOADING", false);
     },
     async fetchPositions({ commit, getters }) {
-      const options = {
-        institutions: getters.addonOptions.institutionsFilter,
-        investments: getters.addonOptions.investmentsFilter
-      };
+      const { addonOptions } = getters;
 
-      const positions = await getters.addon.api.getPositions(options);
+      const positions = await getters.addon.api.getPositions({
+        institutions: addonOptions.institutionsFilter,
+        investments: addonOptions.investmentsFilter,
+        groups: addonOptions.groupsFilter
+      });
       commit("SET_POSITIONS", positions);
     },
     async fetchCurrencies({ commit, getters }) {
