@@ -10,7 +10,9 @@ import "@/plugins/highcharts-vue";
 import "@/plugins/tooltip";
 
 import "numeral/locales/fr-ca";
+import { BUILD_NUMBER } from "./constants";
 
+console.info(`Risk Profile Widget v.${BUILD_NUMBER}`);
 Vue.config.productionTip = false;
 
 Vue.use(Polyglot, { defaultLanguage: "en", languagesAvailable: ["en", "fr"] });
