@@ -1,5 +1,5 @@
 <template>
-  <v-card class="my-card pa-5 grey--text text--darken-3">
+  <v-card class="portfolio-card my-card pa-5 grey--text text--darken-3">
     <h3>{{ $t("portfolio_allocation") }}</h3>
 
     <div class="d-flex align-center flex-wrap">
@@ -19,11 +19,12 @@
         >
           <p class="label">
             <b>{{ $t(allocation.label) }}{{ " " }}</b>
-            {{ allocation.percent }}%
+            {{ (allocation.percent / 100) | formatPercentage }}
           </p>
           <p class="amount">
             {{
-              allocation.amount | formatMoney({ currency: preferredCurrency })
+              allocation.amount
+                | formatMoney({ currency: preferredCurrency, language })
             }}
           </p>
           <p class="grey--text holdings">
@@ -44,12 +45,16 @@ export default {
     PieChart: () => import("./PieChart")
   },
   computed: {
-    ...mapGetters(["preferredCurrency", "allocations"])
+    ...mapGetters(["preferredCurrency", "allocations", "language"])
   }
 };
 </script>
 
 <style lang="scss" scoped>
+.portfolio-card {
+  height: 100%;
+}
+
 .piechart-wrapper {
   margin-left: -20px;
 }

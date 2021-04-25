@@ -1,5 +1,6 @@
 import Vue from "vue";
-import formatMoney from "@/utils/formatMoney";
+import { formatMoney, formatPercentage } from "@/utils/formatMoney";
 
 // register global utility filters.
 Vue.filter("formatMoney", formatMoney);
+Vue.filter("formatPercentage", formatPercentage);

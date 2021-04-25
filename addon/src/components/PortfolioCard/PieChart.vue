@@ -1,42 +1,17 @@
 <template>
   <div class="parent">
     <highcharts :options="chartOptions" />
-    <div class="child d-flex flex-wrap">
-      <div
-        v-tooltip="{
-          content: allocations[0].symbolsList,
-          autoHide: false,
-          offset: 10
-        }"
-        class="d-flex flex-column align-center mr-10"
-      >
-        <div class="primary--text text-h5 font-weight-bold">
-          {{ Math.round(allocations[0].percent) }}
-        </div>
-        <div class="grey--text">{{ $t("bonds") }}</div>
-      </div>
-      <div
-        v-tooltip="{
-          content: allocations[1].symbolsList,
-          autoHide: false,
-          offset: 10
-        }"
-        class="d-flex flex-column align-center"
-      >
-        <div class="secondary--text text-h5 font-weight-bold">
-          {{ Math.round(allocations[1].percent) }}
-        </div>
-        <div class="grey--text">{{ $t("equities") }}</div>
-      </div>
-    </div>
+    <ChartAllocation />
   </div>
 </template>
 
 <script>
 import { THEME } from "@/constants";
 import { mapGetters } from "vuex";
+import ChartAllocation from "./ChartAllocation.vue";
 
 export default {
+  components: { ChartAllocation },
   computed: {
     ...mapGetters(["allocations"]),
     chartOptions() {
@@ -88,8 +63,9 @@ export default {
 
 .child {
   position: absolute;
-  left: 80px;
   top: 116px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .font-larger {
