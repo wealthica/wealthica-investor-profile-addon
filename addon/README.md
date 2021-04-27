@@ -1,4 +1,4 @@
-# Risk Analysis Wealthica Addon built with Vue-cli
+# Risk Profile Wealthica Addon built with Vue-cli
 
 ## Risk Analysis
 
@@ -8,25 +8,25 @@ There are 5 business statuses: Conservative, Cautious, Balanced, Assertive and A
 ## Project setup
 
 ```
-yarn install
+npm install
 ```
 
 ### Compiles and hot-reloads for development
 
 ```
-yarn serve
+npm run serve
 ```
 
 ### Compiles and minifies for production
 
 ```
-yarn build
+npm run build
 ```
 
 ### Lints and fixes files
 
 ```
-yarn lint
+npm run lint
 ```
 
 ### Customize configuration
