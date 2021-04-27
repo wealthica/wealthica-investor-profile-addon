@@ -1,4 +1,4 @@
-# Risk Analysis Wealthica Addon built with Vue-cli
+# Risk Analysis Wealthica Addon
 
 ## Risk Profile Structure
 
@@ -14,7 +14,7 @@ npm install
 ### Compiles and minifies addon and its widgets for production
 
 ```
-npm run  build
+npm run build
 ```
 
 ### Lints project files
