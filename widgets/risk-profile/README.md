@@ -4,12 +4,6 @@
 
 Classify all positions data into Bonds and Equities, then according to their net percent, analyze the status of your business.
 
-## Project setup
-
-```
-npm install
-```
-
 ### Compiles and hot-reloads for development
 
 ```

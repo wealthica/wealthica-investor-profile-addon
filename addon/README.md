@@ -5,12 +5,6 @@
 Classify all positions data into Bonds and Equities, then according to their net percent, analyze the status of your business.
 There are 5 business statuses: Conservative, Cautious, Balanced, Assertive and Aggressive.
 
-## Project setup
-
-```
-npm install
-```
-
 ### Compiles and hot-reloads for development
 
 ```
