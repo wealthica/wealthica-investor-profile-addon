@@ -23,13 +23,13 @@ new Vue({
   store,
   computed: { ...mapGetters(["language"]) },
   watch: {
-    language() {
-      this.setLanguage();
-    },
+    language: {
+      handler: "setLanguage",
+      immediate: true
+    }
   },
   created() {
     this.$store.dispatch("initAddon");
-    this.setLanguage();
   },
   methods: {
     setLanguage() {
