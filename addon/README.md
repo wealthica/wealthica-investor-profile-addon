@@ -1,32 +1,26 @@
-# Risk Analysis Wealthica Addon built with Vue-cli
+# Risk Profile Wealthica Addon built with Vue-cli
 
 ## Risk Analysis
 
 Classify all positions data into Bonds and Equities, then according to their net percent, analyze the status of your business.
 There are 5 business statuses: Conservative, Cautious, Balanced, Assertive and Aggressive.
 
-## Project setup
-
-```
-yarn install
-```
-
 ### Compiles and hot-reloads for development
 
 ```
-yarn serve
+npm run serve
 ```
 
 ### Compiles and minifies for production
 
 ```
-yarn build
+npm run build
 ```
 
 ### Lints and fixes files
 
 ```
-yarn lint
+npm run lint
 ```
 
 ### Customize configuration
