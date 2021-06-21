@@ -23,13 +23,19 @@ new Vue({
   store,
   computed: { ...mapGetters(["language"]) },
   watch: {
-    language(lang) {
-      this.$polyglot.setLang({ lang });
-      numeral.locale(lang === "fr" ? "fr-ca" : lang);
-    }
+    language() {
+      this.setLanguage();
+    },
   },
   created() {
     this.$store.dispatch("initAddon");
+    this.setLanguage();
+  },
+  methods: {
+    setLanguage() {
+      this.$polyglot.setLang({ lang: this.language });
+      numeral.locale(this.language === "fr" ? "fr-ca" : this.language);
+    },
   },
   vuetify,
   render: h => h(App)
